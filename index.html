@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon TCG Virtual</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <main class="content-section">
+            <section id="index-section" class="page-section active">
+                <h1>Índice de Pokémon</h1>
+                <div class="search-filter-container">
+                    <input type="text" id="pokemon-search" placeholder="Buscar Pokémon por nombre...">
+                    <select id="pokemon-type-filter">
+                        <option value="">Filtrar por tipo</option>
+                        <option value="fire">Fuego</option>
+                        <option value="water">Agua</option>
+                        <option value="grass">Planta</option>
+                        </select>
+                </div>
+                <div id="pokemon-grid" class="pokemon-grid">
+                    </div>  
+            </section>
+
+            <section id="open-pack-section" class="page-section hidden">
+                <h1>Abrir un Sobre</h1>
+                <button id="open-pack-button" class="action-button">¡Abrir Sobres!</button>
+                <div id="pack-results" class="pack-results-grid">
+                    </div>
+            </section>
+
+            <section id="trade-section" class="page-section hidden">
+                <h1>Intercambiar Cartas</h1>
+                <div class="user-list">
+                    <h2>Usuarios conectados:</h2>
+                    <ul id="connected-users">
+                        <li>Usuario 1</li>
+                        <li>Usuario 2</li>
+                    </ul>
+                </div>
+                <div class="trade-interface">
+                    <div class="trade-offer">
+                        <h3>Tu oferta:</h3>
+                        <div id="your-offer-card" class="offer-card-placeholder">
+                            Selecciona una carta
+                        </div>
+                        <button id="select-your-card-button" class="select-card-button">Seleccionar de mi colección</button>
+                    </div>
+                    <div class="trade-offer">
+                        <h3>Oferta del otro:</h3>
+                        <div id="partner-offer-card" class="offer-card-placeholder">
+                            Esperando oferta
+                        </div>
+                    </div>
+                </div>
+                <button id="trade-button" class="action-button" disabled>Realizar Intercambio</button>
+                <p id="trade-message" class="trade-message"></p>
+            </section>
+
+        </main>
+
+        <div id="pokemon-detail-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2 id="modal-pokemon-name"></h2>
+                <img id="modal-pokemon-image" src="" alt="">
+                <p>Tipo: <span id="modal-pokemon-type"></span></p>
+                <h3>Estadísticas:</h3>
+                <ul id="modal-pokemon-stats">
+                    </ul>
+                </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <button id="nav-index" class="nav-button active">
+                <i class="fas fa-list"></i> <span>Índice</span>
+            </button>
+            <button id="nav-open-pack" class="nav-button">
+                <i class="fas fa-box-open"></i> <span>Abrir Sobre</span>
+            </button>
+            <button id="nav-trade" class="nav-button">
+                <i class="fas fa-exchange-alt"></i> <span>Intercambiar</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <script src="https://kit.fontawesome.com/tu_kit_id.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
