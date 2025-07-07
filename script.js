@@ -53,6 +53,22 @@ function saveCardsToLocalStorage() {
     console.log("Colección de cartas guardada en localStorage.");
 }
 
+
+
+function actualizarProgresoColeccion() {
+    const progreso = obtainedCards.length;
+    const total = POKEMON_COUNT;
+    const progressBar = document.getElementById('collection-progress');
+    const progressLabel = document.getElementById('progress-label');
+    if (progressBar) progressBar.value = progreso;
+    if (progressBar) progressBar.max = total;
+    if (progressLabel) progressLabel.textContent = `${progreso} / ${total} Pokémones desbloqueados`;
+}
+
+
+
+
+
 // --- 4. Lógica de Navegación ---
 
 // Función principal para mostrar una sección y ocultar las demás
@@ -88,6 +104,10 @@ navTradeButton.addEventListener('click', () => showSection(tradeSection));
 // --- Mostrar la sección del índice por defecto al cargar la página ---
 // Esto asegura que al abrir la app, siempre empieces en el índice de cartas
 showSection(indexSection);
+
+
+
+
 
 // --- 5. Funciones para Consumir la PokeAPI ---
 
@@ -150,6 +170,8 @@ function createPokemonCardElement(pokemon, isOpenedPack = false) {
 }
 
 
+
+
 // --- 6. Lógica para Abrir Sobres ---
 
 // Función asíncrona para simular la apertura de un sobre de Pokémon
@@ -190,8 +212,13 @@ async function openNewPack() {
     }
 
     saveCardsToLocalStorage(); // Guardar la colección actualizada en localStorage
+   
     openPackButton.disabled = false; // Vuelve a habilitar el botón "Abrir Sobres"
     console.log("¡Sobre abierto! Tu colección actual:", obtainedCards);
+
+
+    //Actualiza el progreso
+    actualizarProgresoColeccion();
 }
 
 // --- Asignar Event Listener al botón "Abrir Sobres" ---
@@ -221,6 +248,51 @@ async function fetchAllPokemonNamesAndIds() {
         console.error("Error al cargar la lista de Pokémon para el índice:", error);
     }
 }
+
+
+
+
+
+
+
+
+
+// Función para mostrar el modal con los datos del Pokémon
+function mostrarModalPokemon(pokemonData) {
+    modalPokemonName.textContent = capitalize(pokemonData.name);
+    modalPokemonImage.src = pokemonData.sprites.front_default;
+    modalPokemonImage.alt = capitalize(pokemonData.name);
+    modalPokemonType.textContent = pokemonData.types.map(t => capitalize(t.type.name)).join(', ');
+    // Limpiar y rellenar las estadísticas
+    modalPokemonStats.innerHTML = '';
+    pokemonData.stats.forEach(stat => {
+        const li = document.createElement('li');
+        li.textContent = `${capitalize(stat.stat.name)}: ${stat.base_stat}`;
+        modalPokemonStats.appendChild(li);
+    });
+    pokemonDetailModal.classList.remove('hidden');
+}
+
+// Evento para cerrar el modal
+closeButton.addEventListener('click', () => {
+    pokemonDetailModal.classList.add('hidden');
+});
+pokemonDetailModal.addEventListener('click', (e) => {
+    if (e.target === pokemonDetailModal) {
+        pokemonDetailModal.classList.add('hidden');
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
 
 // Función para renderizar (dibujar) la cuadrícula de Pokémon en la sección de Índice
 function renderPokemonGrid() {
@@ -253,8 +325,8 @@ function renderPokemonGrid() {
             `;
             // En la Fase 3, añadiremos el evento de clic para abrir el modal
             cardDiv.addEventListener('click', () => {
-                // Por ahora, solo un mensaje en consola. El modal va en Fase 3.
-                console.log(`Clic en Pokémon desbloqueado: ${unlockedPokemonData.name}`);
+                
+               mostrarModalPokemon(unlockedPokemonData);
             });
         } else {
             // Si la carta NO está desbloqueada
@@ -266,7 +338,16 @@ function renderPokemonGrid() {
         }
         pokemonGrid.appendChild(cardDiv); // Añadir el recuadro de la carta al contenedor del grid
     });
+
+    //Actualiza el progreso
+    actualizarProgresoColeccion();
 }
+
+
+
+
+
+
 
 // --- Llamar a la función para precargar los datos básicos y renderizar el índice al inicio ---
 // Es vital que esto se llame una vez que el script está cargado y listo.
