@@ -228,6 +228,14 @@ h1 {
 
 
 /* 5.2. Abrir un Sobre */
+
+.imagenSobre{
+ 
+     display: block;
+    margin: 0 auto 20px auto;
+
+}
+
 .action-button {
     background-color: #4CAF50;
     color: white;

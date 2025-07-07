@@ -212,6 +212,7 @@ async function openNewPack() {
                     stats: pokemonData.stats
                 };
                 obtainedCards.push(minimalPokemon);
+                
             }
 
             // Crear el elemento HTML de la carta y añadirlo al contenedor de resultados
