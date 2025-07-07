@@ -20,11 +20,16 @@
                         <option value="fire">Fuego</option>
                         <option value="water">Agua</option>
                         <option value="grass">Planta</option>
-                        </select>
+                    </select>
+                    
                 </div>
-                <div id="pokemon-grid" class="pokemon-grid">
-                    </div>  
+                <progress id="collection-progress" value="0" max="150" style="width: 100%; height: 20px;"></progress>
+                <span id="progress-label"></span>
+                
+
+                <div id="pokemon-grid" class="pokemon-grid"></div>  
             </section>
+
 
             <section id="open-pack-section" class="page-section hidden">
                 <h1>Abrir un Sobre</h1>
@@ -32,6 +37,7 @@
                 <div id="pack-results" class="pack-results-grid">
                     </div>
             </section>
+
 
             <section id="trade-section" class="page-section hidden">
                 <h1>Intercambiar Cartas</h1>
@@ -63,6 +69,8 @@
 
         </main>
 
+
+
         <div id="pokemon-detail-modal" class="modal hidden">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
@@ -74,6 +82,9 @@
                     </ul>
                 </div>
         </div>
+
+
+
 
         <nav class="bottom-nav">
             <button id="nav-index" class="nav-button active">
