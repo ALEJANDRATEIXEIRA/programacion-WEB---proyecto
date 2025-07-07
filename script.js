@@ -202,7 +202,16 @@ async function openNewPack() {
             // Añadir la carta a la colección del usuario si no la tiene ya
             const exists = obtainedCards.some(card => card.id === pokemonData.id);
             if (!exists) {
-                obtainedCards.push(pokemonData); // Añade el objeto completo del Pokémon
+                const minimalPokemon = {
+                    id: pokemonData.id,
+                    name: pokemonData.name,
+                    sprites: {
+                        front_default: pokemonData.sprites.front_default
+                    },
+                    types: pokemonData.types,
+                    stats: pokemonData.stats
+                };
+                obtainedCards.push(minimalPokemon);
             }
 
             // Crear el elemento HTML de la carta y añadirlo al contenedor de resultados
@@ -223,6 +232,9 @@ async function openNewPack() {
 
 // --- Asignar Event Listener al botón "Abrir Sobres" ---
 openPackButton.addEventListener('click', openNewPack);
+
+
+
 
 
 // --- 7. Lógica para el Índice de Cartas (Versión Básica de Fase 2) ---
