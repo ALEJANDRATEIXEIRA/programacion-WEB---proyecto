@@ -18,6 +18,9 @@ const packResultsContainer = document.getElementById('pack-results'); // Donde s
 
 // Elementos de la Sección "Índice de Cartas"
 const pokemonGrid = document.getElementById('pokemon-grid'); // Contenedor para mostrar las cartas del índice
+const pokemonSearch = document.getElementById('pokemon-search'); // Input de búsqueda
+const pokemonTypeFilter = document.getElementById('pokemon-type-filter'); // Select de filtro por tipo
+let selectedType = '';
 
 // Elementos del Modal (si existen)
 const pokemonDetailModal = document.getElementById('pokemon-detail-modal');
@@ -32,6 +35,7 @@ const POKEMON_COUNT = 150;
 const POKEAPI_BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 let obtainedCards = JSON.parse(localStorage.getItem('pokemonCollection')) || [];
 let allPokemonData = [];
+let searchTerm = '';
 
 // --- 3. Funciones de Utilidad ---
 function capitalize(string) {
@@ -150,6 +154,20 @@ if (openPackButton && packResultsContainer) {
 }
 
 // --- 7. Lógica para el Índice de Cartas (solo si existe el grid) ---
+if (pokemonSearch && pokemonGrid) {
+    pokemonSearch.addEventListener('input', (e) => {
+        searchTerm = e.target.value.trim().toLowerCase();
+        renderPokemonGrid();
+    });
+}
+
+if (pokemonTypeFilter && pokemonGrid) {
+    pokemonTypeFilter.addEventListener('change', (e) => {
+        selectedType = e.target.value;
+        renderPokemonGrid();
+    });
+}
+
 async function fetchAllPokemonNamesAndIds() {
     try {
         const response = await fetch(`${POKEAPI_BASE_URL}?limit=${POKEMON_COUNT}`);
@@ -192,7 +210,23 @@ function renderPokemonGrid() {
     if (!pokemonGrid) return;
     pokemonGrid.innerHTML = '';
     if (allPokemonData.length === 0) return;
-    allPokemonData.forEach(pokemon => {
+    // Filtrar por nombre si hay búsqueda
+    let filteredPokemon = allPokemonData;
+    if (searchTerm && searchTerm.length > 0) {
+        filteredPokemon = filteredPokemon.filter(pokemon =>
+            pokemon.name.toLowerCase().includes(searchTerm)
+        );
+    }
+    // Filtrar por tipo si hay tipo seleccionado
+    if (selectedType && selectedType.length > 0) {
+        filteredPokemon = filteredPokemon.filter(pokemon => {
+            // Buscar el Pokémon en obtainedCards para ver sus tipos
+            const unlocked = obtainedCards.find(card => card.id === pokemon.id);
+            if (!unlocked) return false;
+            return unlocked.types.some(t => t.type.name === selectedType);
+        });
+    }
+    filteredPokemon.forEach(pokemon => {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('pokemon-card');
         cardDiv.dataset.id = pokemon.id;
@@ -210,7 +244,7 @@ function renderPokemonGrid() {
             });
         } else {
             cardDiv.classList.add('locked');
-            cardDiv.innerHTML = `?`;
+            cardDiv.innerHTML = `???`;
             cardDiv.addEventListener('click', () => {
                 console.log(`Pokémon ${pokemon.name} (ID: ${pokemon.id}) aún no descubierto.`);
             });
