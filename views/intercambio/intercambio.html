@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intercambiar Cartas</title>
+    <link rel="stylesheet" href="intercambio.css">
+    <link rel="stylesheet" href="../../shared/css/common.css">
+    <link rel="stylesheet" href="../../shared/css/vars.css">
+</head>
+<body>
+    <div class="app-container">
+        <main class="content-section">
+            <section id="trade-section" class="page-section active">
+                <h1>Intercambiar Cartas</h1>
+                <div class="user-list">
+                    <h2>Usuarios conectados:</h2>
+                    <ul id="connected-users">
+                        <li>Usuario 1</li>
+                        <li>Usuario 2</li>
+                    </ul>
+                </div>
+                <div class="trade-interface">
+                    <div class="trade-offer">
+                        <h3>Tu oferta:</h3>
+                        <div id="your-offer-card" class="offer-card-placeholder">
+                            Selecciona una carta
+                        </div>
+                        <button id="select-your-card-button" class="select-card-button">Seleccionar de mi colección</button>
+                    </div>
+                    <div class="trade-offer">
+                        <h3>Oferta del otro:</h3>
+                        <div id="partner-offer-card" class="offer-card-placeholder">
+                            Esperando oferta
+                        </div>
+                    </div>
+                </div>
+                <button id="trade-button" class="action-button" disabled>Realizar Intercambio</button>
+                <p id="trade-message" class="trade-message"></p>
+            </section>
+        </main>
+        <nav class="bottom-nav">
+            <a href="../../index.html" class="nav-button">
+                <i class="fas fa-list"></i> <span>Índice</span>
+            </a>
+            <a href="../sobres/sobres.html" class="nav-button">
+                <i class="fas fa-box-open"></i> <span>Abrir Sobre</span>
+            </a>
+            <a href="intercambio.html" class="nav-button active">
+                <i class="fas fa-exchange-alt"></i> <span>Intercambiar</span>
+            </a>
+        </nav>
+    </div>
+    <script src="../../shared/js/script.js" defer></script>
+</body>
+</html>

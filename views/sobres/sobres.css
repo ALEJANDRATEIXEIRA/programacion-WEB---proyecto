@@ -1,0 +1,31 @@
+@import '../../shared/css/common.css';
+@import '../../shared/css/vars.css';
+
+/* Estilos específicos para Abrir Sobres */
+.action-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin: 20px auto; 
+    display: block;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+}
+.action-button:hover {
+    background-color: #45a049;
+}
+.pack-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+}
+.pack-results-grid .pokemon-card {
+    height: 150px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
