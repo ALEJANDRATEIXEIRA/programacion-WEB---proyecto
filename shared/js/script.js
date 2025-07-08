@@ -98,9 +98,7 @@ function createPokemonCardElement(pokemon, isOpenedPack = false) {
             if (!carta.classList.contains('volteada')) {
                 carta.classList.add('volteada');
             } else {
-                if (typeof mostrarModalPokemon === 'function' && pokemonDetailModal) {
-                    mostrarModalPokemon(pokemon);
-                }
+               mostrarModalPokemon(pokemon);
             }
 
         });
