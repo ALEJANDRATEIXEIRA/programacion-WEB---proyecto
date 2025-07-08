@@ -132,6 +132,12 @@ async function openNewPack() {
                 obtainedCards.push(minimalPokemon);
             }
             const cardElement = createPokemonCardElement(pokemonData, true);
+            // Asignar evento para mostrar el modal de detalles si existe el modal
+            if (typeof mostrarModalPokemon === 'function' && pokemonDetailModal) {
+                cardElement.addEventListener('click', () => {
+                    mostrarModalPokemon(pokemonData);
+                });
+            }
             packResultsContainer.appendChild(cardElement);
         }
     }

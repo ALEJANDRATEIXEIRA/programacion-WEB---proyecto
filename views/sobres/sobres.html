@@ -12,22 +12,36 @@
     <div class="app-container">
         <main class="content-section">
             <section id="open-pack-section" class="page-section active">
-                <h1>Abrir un Sobre</h1>
+                <h1>Abrir Sobres</h1>
                 <button id="open-pack-button" class="action-button">¡Abrir Sobres!</button>
                 <div id="pack-results" class="pack-results-grid"></div>
             </section>
         </main>
         <nav class="bottom-nav">
             <a href="../../index.html" class="nav-button">
-                <i class="fas fa-list"></i> <span>Índice</span>
+                <img src="../../assets/icons/home-icon.png" alt="Colección" class="nav-img" />
+                <span>Colección</span>
             </a>
             <a href="sobres.html" class="nav-button active">
-                <i class="fas fa-box-open"></i> <span>Abrir Sobre</span>
+                <img src="../../assets/icons/package-icon.png" alt="Sobres" class="nav-img" />
+                <span>Sobres</span>
             </a>
             <a href="../intercambio/intercambio.html" class="nav-button">
-                <i class="fas fa-exchange-alt"></i> <span>Intercambiar</span>
+                <img src="../../assets/icons/exchange-icon.png" alt="Intercambio" class="nav-img" />
+                <span>Intercambio</span>
             </a>
         </nav>
+    </div>
+
+    <div id="pokemon-detail-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-pokemon-name"></h2>
+            <img id="modal-pokemon-image" src="" alt="">
+            <p>Tipo: <span id="modal-pokemon-type"></span></p>
+            <h3>Estadísticas:</h3>
+            <ul id="modal-pokemon-stats"></ul>
+        </div>
     </div>
     <script src="../../shared/js/script.js" defer></script>
 </body>
