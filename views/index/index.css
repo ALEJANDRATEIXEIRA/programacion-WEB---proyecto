@@ -7,10 +7,9 @@
     margin-bottom: 20px;
 }
 
-.search-filter-container input,
-.search-filter-container select {
+.search-filter-container input {
     width: 80vw;
-    max-width: 730px;
+    max-width: 740px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -28,6 +27,7 @@
     margin-bottom: 10px;
     appearance: none;
 }
+
 /* etiqueta de progreso */
 #progress-label {
     display: block;
@@ -46,4 +46,62 @@
     background: rgb(6, 204, 178);
     border-radius: 12px;
     transition: width 0.4s;
+}
+
+.pokemon-type-filter {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 2px;
+    margin-bottom: 5px;
+    align-items: center;
+    -ms-overflow-style: none;
+    list-style: none;
+    padding-left: 1.5px;
+    user-select: none;
+    cursor: grab;
+}
+
+.pokemon-type-filter li {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.pokemon-type-filter::-webkit-scrollbar {
+    display: none;
+}
+
+.pokemon-type-filter::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+}
+
+.type {
+    border: none;
+    outline: none;
+    background: #f3f6fa;
+    color: var(--color-primary);
+    border-radius: 20px;
+    padding: 7px 16px;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(60,60,120,0.20);
+    white-space: nowrap;
+    margin-bottom: 2px;
+}
+
+.type.active {
+    background: #fff;
+    color: var(--color-primary);
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(63,81,181,0.15);
+    border: 1.5px solid var(--color-primary);
+}
+
+.type:focus {
+    outline: 2px solid var(--color-primary);
 }

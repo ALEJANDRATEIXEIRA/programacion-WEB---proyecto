@@ -14,12 +14,26 @@
                 <h1>Mi Colección</h1>
                 <div class="search-filter-container">
                     <input type="text" id="pokemon-search"  class="search-input" placeholder="Buscar Pokémon por nombre...">
-                    <select id="pokemon-type-filter">
-                        <option value="">Filtrar por tipo</option>
-                        <option value="fire">Fuego</option>
-                        <option value="water">Agua</option>
-                        <option value="grass">Planta</option>
-                    </select>
+                    <ul class="pokemon-type-filter">
+                        <li><button class="type active" data-type="">Todos</button></li>
+                        <li><button class="type" data-type="normal">Normal</button></li>
+                        <li><button class="type" data-type="fire">Fuego</button></li>
+                        <li><button class="type" data-type="water">Agua</button></li>
+                        <li><button class="type" data-type="grass">Planta</button></li>
+                        <li><button class="type" data-type="electric">Eléctrico</button></li>
+                        <li><button class="type" data-type="ground">Tierra</button></li>
+                        <li><button class="type" data-type="poison">Veneno</button></li>
+                        <li><button class="type" data-type="flying">Volador</button></li>
+                        <li><button class="type" data-type="psychic">Psíquico</button></li>
+                        <li><button class="type" data-type="ice">Hielo</button></li>
+                        <li><button class="type" data-type="fighting">Lucha</button></li>
+                        <li><button class="type" data-type="bug">Bicho</button></li>
+                        <li><button class="type" data-type="rock">Roca</button></li>
+                        <li><button class="type" data-type="steel">Acero</button></li>
+                        <li><button class="type" data-type="ghost">Fantasma</button></li>
+                        <li><button class="type" data-type="fairy">Hada</button></li>
+                        <li><button class="type" data-type="dragon">Dragón</button></li>
+                    </ul>
                 </div>
                 <progress id="collection-progress" value="0" max="150" style="width: 100%; height: 20px;"></progress>
                 <span id="progress-label"></span>
