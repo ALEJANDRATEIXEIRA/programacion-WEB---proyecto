@@ -2,6 +2,15 @@
 @import '../../shared/css/vars.css';
 
 /* Estilos específicos para Abrir Sobres */
+
+.imagenSobre {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 200px;
+    height: 250px;
+}
+
+
 .action-button {
     background-color: #4CAF50;
     color: white;

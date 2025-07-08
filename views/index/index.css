@@ -17,3 +17,33 @@
     font-size: 1em;
 }
 
+/* --- Barra de progreso --- */
+#collection-progress {
+    width: 100%;
+    height: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 10px;
+    appearance: none;
+}
+/* etiqueta de progreso */
+#progress-label {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: #3f51b5;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+}
+
+#collection-progress::-webkit-progress-bar {
+    background: #dadada;
+    border-radius: 12px;
+}
+#collection-progress::-webkit-progress-value {
+    background: rgb(6, 204, 178);
+    border-radius: 12px;
+    transition: width 0.4s;
+}

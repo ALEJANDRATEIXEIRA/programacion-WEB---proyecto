@@ -2,15 +2,6 @@
 
 // --- 1. Seleccionar elementos HTML ---
 
-// Elementos de Navegación (botones del menú inferior)
-const navIndexButton = document.getElementById('nav-index');
-const navOpenPackButton = document.getElementById('nav-open-pack');
-const navTradeButton = document.getElementById('nav-trade');
-
-// Secciones de Contenido (las pantallas que se muestran)
-const indexSection = document.getElementById('index-section');
-const openPackSection = document.getElementById('open-pack-section');
-const tradeSection = document.getElementById('trade-section');
 
 // Elementos de la Sección "Abrir un Sobre"
 const openPackButton = document.getElementById('open-pack-button'); // Botón para abrir sobres
@@ -54,30 +45,6 @@ function actualizarProgresoColeccion() {
     if (progressLabel) progressLabel.textContent = `${progreso} / ${total} Pokémones desbloqueados`;
 }
 
-// --- 4. Lógica de Navegación (solo si existen los botones) ---
-function showSection(sectionToShow) {
-    if (indexSection) indexSection.classList.remove('active');
-    if (openPackSection) openPackSection.classList.remove('active');
-    if (tradeSection) tradeSection.classList.remove('active');
-    if (navIndexButton) navIndexButton.classList.remove('active');
-    if (navOpenPackButton) navOpenPackButton.classList.remove('active');
-    if (navTradeButton) navTradeButton.classList.remove('active');
-    if (sectionToShow) {
-        sectionToShow.classList.add('active');
-        if (sectionToShow === indexSection && navIndexButton) {
-            navIndexButton.classList.add('active');
-            renderPokemonGrid();
-        } else if (sectionToShow === openPackSection && navOpenPackButton) {
-            navOpenPackButton.classList.add('active');
-        } else if (sectionToShow === tradeSection && navTradeButton) {
-            navTradeButton.classList.add('active');
-        }
-    }
-}
-if (navIndexButton && indexSection) navIndexButton.addEventListener('click', () => showSection(indexSection));
-if (navOpenPackButton && openPackSection) navOpenPackButton.addEventListener('click', () => showSection(openPackSection));
-if (navTradeButton && tradeSection) navTradeButton.addEventListener('click', () => showSection(tradeSection));
-if (indexSection && !openPackSection && !tradeSection) showSection(indexSection);
 
 // --- 5. Funciones para Consumir la PokeAPI ---
 const pokemonCache = {};
