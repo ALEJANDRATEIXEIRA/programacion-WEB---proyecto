@@ -120,6 +120,43 @@ if (openPackButton && packResultsContainer) {
     openPackButton.addEventListener('click', openNewPack);
 }
 
+//Logica para mostrar las vistas de sobres
+document.addEventListener('DOMContentLoaded', () => {
+    const preOpenView = document.getElementById('pre-open-view');
+    const postOpenView = document.getElementById('post-open-view');
+    const openPackButton = document.getElementById('open-pack-button');
+    const openAnotherPackButton = document.getElementById('open-another-pack-button');
+    const packResultsContainer = document.getElementById('pack-results');
+
+    function mostrarVistaPrevia() {
+        preOpenView.style.display = '';
+        postOpenView.style.display = 'none';
+        packResultsContainer.innerHTML = '';
+    }
+
+    function mostrarVistaResultados() {
+        preOpenView.style.display = 'none';
+        postOpenView.style.display = '';
+    }
+
+    openPackButton.addEventListener('click', async () => {
+        
+        mostrarVistaResultados();
+        //La accion de renderizar las cartas esta en otro lado :D 
+    });
+
+    openAnotherPackButton.addEventListener('click', () => {
+        mostrarVistaPrevia();
+    });
+
+    // Inicialmente muestra la vista previa
+    mostrarVistaPrevia();
+});
+
+
+
+
+
 // --- 7. Lógica para el Índice de Cartas (solo si existe el grid) ---
 if (pokemonSearch && pokemonGrid) {
     pokemonSearch.addEventListener('input', (e) => {

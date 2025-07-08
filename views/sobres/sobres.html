@@ -11,13 +11,36 @@
 <body>
     <div class="app-container">
         <main class="content-section">
+
             <section id="open-pack-section" class="page-section active">
-                <h1>Abrir Sobres</h1>
-                 <img class="imagenSobre" src="../../assets/img/sobrePokemon.png" alt="Sobre Cartas Pokemon" width="200" height="250">
-                <button id="open-pack-button" class="action-button">¡Abrir Sobres!</button>
-                <div id="pack-results" class="pack-results-grid"></div>
+                
+                <!-- Vista 1: Antes de abrir el sobre -->
+                <div id="pre-open-view">
+                    <img class="imagenSobre" src="../../assets/img/sobrePokemon.png" alt="Sobre Cartas Pokemon" width="200" height="250">
+                    <section class="sobre-info">
+                        <h2>Contenido del sobre:</h2>
+                        <ul>
+                            <li>6 cartas aleatorias</li>
+                            <li>Posibilidad de cartas raras</li>
+                            <li>¡Colecciona todos los Pokémon!</li>
+                        </ul>
+                    </section>
+                    <button id="open-pack-button" class="action-button">¡Abrir Sobres!</button>
+                </div>
+
+                <!-- Vista 2: Después de abrir el sobre -->
+                <div id="post-open-view" style="display: none;">
+                    <h2>¡Sus Nuevas Cartas!</h2>
+                    <p>Toca cada carta para revelarla</p>
+                    <div id="pack-results" class="pack-results-grid"></div>
+                    <button id="open-another-pack-button" class="action-button">¡Abrir Otro Sobre!</button>
+                </div>
+
             </section>
+
         </main>
+
+
         <nav class="bottom-nav">
             <a href="../../index.html" class="nav-button">
                 <img src="../../assets/icons/home-icon.png" alt="Colección" class="nav-img" />
@@ -44,6 +67,7 @@
             <ul id="modal-pokemon-stats"></ul>
         </div>
     </div>
+
     <script src="../../shared/js/script.js" defer></script>
 </body>
 </html>

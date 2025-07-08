@@ -46,6 +46,7 @@ h1 {
     color: var(--color-primary);
     margin-bottom: 20px;
     text-align: center;
+    margin-top: 0;
 }
 
 .bottom-nav {
