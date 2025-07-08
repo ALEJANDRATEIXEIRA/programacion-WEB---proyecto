@@ -25,6 +25,44 @@
                 <span id="progress-label"></span>
                 <div id="pokemon-grid" class="pokemon-grid"></div>  
             </section>
+
+
+            <section id="open-pack-section" class="page-section hidden">
+                <h1>Abrir un Sobre</h1>
+                <button id="open-pack-button" class="action-button">¡Abrir Sobres!</button>
+                <div id="pack-results" class="pack-results-grid">
+                    </div>
+            </section>
+
+
+            <section id="trade-section" class="page-section hidden">
+                <h1>Intercambiar Cartas</h1>
+                <div class="user-list">
+                    <h2>Usuarios conectados:</h2>
+                    <ul id="connected-users">
+                        <li>Usuario 1</li>
+                        <li>Usuario 2</li>
+                    </ul>
+                </div>
+                <div class="trade-interface">
+                    <div class="trade-offer">
+                        <h3>Tu oferta:</h3>
+                        <div id="your-offer-card" class="offer-card-placeholder">
+                            Selecciona una carta
+                        </div>
+                        <button id="select-your-card-button" class="select-card-button">Seleccionar de mi colección</button>
+                    </div>
+                    <div class="trade-offer">
+                        <h3>Oferta del otro:</h3>
+                        <div id="partner-offer-card" class="offer-card-placeholder">
+                            Esperando oferta
+                        </div>
+                    </div>
+                </div>
+                <button id="trade-button" class="action-button" disabled>Realizar Intercambio</button>
+                <p id="trade-message" class="trade-message"></p>
+            </section>
+
         </main>
         <div id="pokemon-detail-modal" class="modal hidden">
             <div class="modal-content">
