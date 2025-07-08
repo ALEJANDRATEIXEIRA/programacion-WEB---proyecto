@@ -61,18 +61,70 @@ async function getPokemonData(id) {
         return null;
     }
 }
+
+
+
+
 function createPokemonCardElement(pokemon, isOpenedPack = false) {
-    const cardDiv = document.createElement('div');
-    cardDiv.classList.add('pokemon-card', 'unlocked');
-    cardDiv.dataset.id = pokemon.id;
-    const imageUrl = pokemon.sprites.front_default;
-    cardDiv.innerHTML = `
-        <img src="${imageUrl}" alt="${capitalize(pokemon.name)}">
-        <p>${capitalize(pokemon.name)}</p>
-    `;
-    if (isOpenedPack) cardDiv.classList.add('newly-opened');
-    return cardDiv;
+    // Si es para el pack abierto (animación flip)
+    if (isOpenedPack) {
+        const cartaBox = document.createElement('div');
+        cartaBox.className = 'carta-box';
+
+        const carta = document.createElement('div');
+        carta.className = 'carta';
+
+        // Cara trasera (reverso)
+        const caraDetras = document.createElement('div');
+        caraDetras.className = 'cara detras';
+        caraDetras.innerHTML = `<div>???</div>`;
+        
+
+        // Cara frontal (frente)
+        const caraFrente = document.createElement('div');
+        caraFrente.className = 'cara frente';
+        caraFrente.innerHTML = `
+            <img src="${pokemon.sprites.front_default}" alt="${capitalize(pokemon.name)}" width="100" height="100">
+            <p>${capitalize(pokemon.name)}</p>
+        `;
+
+        carta.appendChild(caraDetras);
+        carta.appendChild(caraFrente);
+        cartaBox.appendChild(carta);
+
+        // solo muestra el modal si la carta ya está volteada
+         cartaBox.addEventListener('click', function () {
+
+            if (!carta.classList.contains('volteada')) {
+                carta.classList.add('volteada');
+            } else {
+                if (typeof mostrarModalPokemon === 'function' && pokemonDetailModal) {
+                    mostrarModalPokemon(pokemon);
+                }
+            }
+
+        });
+
+        return cartaBox;
+    } else {
+        // Para el índice, la carta normal
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('pokemon-card', 'unlocked');
+        cardDiv.dataset.id = pokemon.id;
+        const imageUrl = pokemon.sprites.front_default;
+        cardDiv.innerHTML = `
+            <img src="${imageUrl}" alt="${capitalize(pokemon.name)}">
+            <p>${capitalize(pokemon.name)}</p>
+        `;
+        return cardDiv;
+    }
 }
+
+
+
+
+
+
 
 // --- 6. Lógica para Abrir Sobres (solo si existen los elementos) ---
 async function openNewPack() {
@@ -103,12 +155,6 @@ async function openNewPack() {
                 obtainedCards.push(minimalPokemon);
             }
             const cardElement = createPokemonCardElement(pokemonData, true);
-            // Asignar evento para mostrar el modal de detalles si existe el modal
-            if (typeof mostrarModalPokemon === 'function' && pokemonDetailModal) {
-                cardElement.addEventListener('click', () => {
-                    mostrarModalPokemon(pokemonData);
-                });
-            }
             packResultsContainer.appendChild(cardElement);
         }
     }

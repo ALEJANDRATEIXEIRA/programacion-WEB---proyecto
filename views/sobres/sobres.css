@@ -89,3 +89,94 @@
     height: 150px; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
+
+
+/*Css para animacion de la carta al voltear*/
+
+.carta-box {
+  width: 110px;
+  height: 150px;
+  perspective: 1000px;
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+}
+
+.carta {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s linear;
+  cursor: pointer;
+  background-color: #eceff1;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  border: 1.5px solid #cfd8dc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cara {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  top: 0; left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  /* Fondo para que ambas caras tengan el mismo estilo */
+  background: #eceff1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  border: 1.5px solid #cfd8dc;
+}
+.cara.detras{
+    background-color: #00a7fa;
+    background: #ddae12;
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: open;
+    border-radius: 10px;
+    border: 1.5px solid #cfd8dc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+}
+
+.cara.frente {
+  transform: rotateY(180deg);
+}
+
+.carta.volteada {
+  transform: rotateY(180deg);
+}
+
+.cara img {
+  max-width: 70px;
+  max-height: 70px;
+  margin-bottom: 8px;
+  image-rendering: pixelated;
+}
+
+.cara p {
+  font-size: 0.9em;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+  text-transform: capitalize;
+}
+
+
+@media (min-width: 768px) {
+  .carta-box {
+    width: 120px;
+    height: 170px;
+  }
+  .cara img {
+    max-width: 90px;
+    max-height: 90px;
+  }
+}
