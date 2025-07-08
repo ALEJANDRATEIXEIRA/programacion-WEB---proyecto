@@ -107,7 +107,7 @@ h1 {
 .pokemon-grid,
 .pack-results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap: 10px;
     justify-content: center;
 }
@@ -252,7 +252,7 @@ h1 {
 @media (min-width: 768px) {
     .pokemon-grid,
     .pack-results-grid {
-        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         gap: 15px;
     }
     .pokemon-card {
