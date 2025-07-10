@@ -181,6 +181,50 @@
 
 
 
+/*Estilos de boton de realizar cambio*/
+
+/* Agrega esto al final de tu archivo intercambio.css */
+
+#realizar-intercambio-btn {
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-size: 1.05em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 10px rgba(24,90,157,0.09);
+    cursor: pointer;
+    margin-top: 18px;
+    transition: background 0.3s, transform 0.15s;
+    outline: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#realizar-intercambio-btn:hover,
+#realizar-intercambio-btn:focus {
+    background: linear-gradient(90deg, #36d1c4 0%, #5b86e5 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 18px rgba(24,90,157,0.18);
+}
+
+#realizar-intercambio-btn:active {
+    background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+    transform: scale(0.98);
+}
+
+#realizar-intercambio-btn:disabled {
+    background: #bdbdbd;
+    color: #f5f5f5;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+    transform: none;
+}
+
 
 
 @media (max-width: 768px) {

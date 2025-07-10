@@ -12,7 +12,7 @@ if (closeButton && pokemonDetailModal) {
     });
 }
 
-// --- Lógica para Abrir Sobres (solo si existen los elementos) ---
+// --- Lógica para Abrir Sobres 
 async function openNewPack() {
     if (!openPackButton || !packResultsContainer) return;
     openPackButton.disabled = true;
@@ -31,16 +31,7 @@ async function openNewPack() {
         if (pokemonData) {
             const exists = obtainedCards.some(card => card.id === pokemonData.id);
             if (!exists) {
-                const minimalPokemon = {
-                    id: pokemonData.id,
-                    name: pokemonData.name,
-                    sprites: {
-                        front_default: pokemonData.sprites.front_default
-                    },
-                    types: pokemonData.types,
-                    stats: pokemonData.stats
-                };
-                obtainedCards.push(minimalPokemon);
+                obtainedCards.push(pokemonData); 
             }
             const cardElement = createPokemonCardElement(pokemonData, true);
             packResultsContainer.appendChild(cardElement);
@@ -51,6 +42,7 @@ async function openNewPack() {
     openPackButton.disabled = false;
     actualizarProgresoColeccion();
 }
+
 if (openPackButton && packResultsContainer) {
     openPackButton.addEventListener('click', openNewPack);
 }

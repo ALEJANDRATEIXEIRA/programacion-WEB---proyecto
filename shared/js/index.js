@@ -116,6 +116,7 @@ function renderPokemonGrid() {
 }
 
 // --- Carga inicial de la colección ---
+
 async function fetchAllPokemonNamesAndIds() {
     try {
         const response = await fetch(`${POKEAPI_BASE_URL}?limit=${POKEMON_COUNT}`);
@@ -124,12 +125,16 @@ async function fetchAllPokemonNamesAndIds() {
         allPokemonData = data.results.map((pokemon, index) => ({
             id: index + 1,
             name: pokemon.name,
+    
         }));
         renderPokemonGrid();
     } catch (error) {
         console.error("Error al cargar la lista de Pokémon para el índice:", error);
     }
 }
+
+
 if (pokemonGrid) {
     fetchAllPokemonNamesAndIds();
+    
 } 
