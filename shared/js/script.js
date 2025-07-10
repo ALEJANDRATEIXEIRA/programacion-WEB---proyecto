@@ -30,9 +30,11 @@ let searchTerm = '';
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
 function saveCardsToLocalStorage() {
     localStorage.setItem('pokemonCollection', JSON.stringify(obtainedCards));
 }
+
 function actualizarProgresoColeccion() {
     const progreso = obtainedCards.length;
     const total = POKEMON_COUNT;
@@ -45,6 +47,9 @@ function actualizarProgresoColeccion() {
 
 
 // --- 5. Funciones para Consumir la PokeAPI ---
+
+// Guarda en cache los datos de los pokémon para no consultar a cada rato la API
+// en dado caso de que no se haya trabajado con ese pokémon se llama a la API para guardarlo
 const pokemonCache = {};
 async function getPokemonData(id) {
     if (pokemonCache[id]) return pokemonCache[id];
@@ -103,6 +108,7 @@ const TYPE_COLORS = {
     ghost: '#705898',
     steel: '#B8B8D0',
 };
+
 function createPokemonCardElement(pokemon, isOpenedPack = false) {
     const cardDiv = document.createElement('div'); // Crea un nuevo div
     cardDiv.classList.add('pokemon-card', 'unlocked'); // Le añade clases CSS
