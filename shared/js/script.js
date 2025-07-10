@@ -45,20 +45,30 @@ function actualizarProgresoColeccion() {
 
 
 // --- 5. Funciones para Consumir la PokeAPI ---
-const pokemonCache = {};
+const pokemonCache = [];
 async function getPokemonData(id) {
-    if (pokemonCache[id]) return pokemonCache[id];
-    try {
-        const response = await fetch(`${POKEAPI_BASE_URL}${id}/`);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-        pokemonCache[id] = data;
-        return data;
-    } catch (error) {
-        console.error(`Error al obtener datos del Pokémon ${id}:`, error);
-        return null;
-    }
+    let pokemon = pokemonCache.find(p => p.id === id);
+    if (pokemon) return pokemon;
+
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const pokemonData = await response.json();
+
+    // Solo guarda los campos necesarios
+    const minimalData = {
+        id: pokemonData.id,
+        name: pokemonData.name,
+        sprites: {
+            front_default: pokemonData.sprites.front_default
+        },
+        types: pokemonData.types,
+        stats: pokemonData.stats
+    };
+
+    pokemonCache.push(minimalData);
+    return minimalData;
 }
+
+
 
 // Modal de detalle de Pokémon Esta es una función global
 function mostrarModalPokemon(pokemonData) {
