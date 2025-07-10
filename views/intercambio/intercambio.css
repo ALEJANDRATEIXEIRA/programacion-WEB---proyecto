@@ -76,3 +76,33 @@
     margin-top: 15px;
     color: #e91e63;
 }
+
+
+
+/* Estilos para ventana de seleccion*/
+
+#collection-cards {
+  max-height: 320px;      
+  overflow-y: auto;
+  padding-right: 8px;     
+}
+
+
+.pokemon-card.selected {
+  outline: 3px solid var(--color-primary, #3f51b5);
+  box-shadow: 0 0 0 3px #aac6ff66;
+}
+
+.pokemon-card.mini {
+  width: 55px;
+  height: 70px;
+  display: inline-block;
+  margin: 2px;
+  font-size: 0.7em;
+}
+.pokemon-card.mini img {
+  max-width: 80%;
+}
+
+
+

@@ -11,6 +11,7 @@
 <body>
     <div class="app-container">
         <main class="content-section">
+
             <section id="trade-section" class="page-section active">
                 <h1>Intercambiar Cartas</h1>
                 <div class="user-list">
@@ -21,12 +22,23 @@
                     </ul>
                 </div>
                 <div class="trade-interface">
+                    
                     <div class="trade-offer">
                         <h3>Tu oferta:</h3>
                         <div id="your-offer-card" class="offer-card-placeholder">
                             Selecciona una carta
                         </div>
                         <button id="select-your-card-button" class="select-card-button">Seleccionar de mi colección</button>
+                        
+                        <!-- Apartado de seleccion -->
+                        <div id="collection-modal" class="modal hidden">
+                            <div class="modal-content">
+                                <h3>Selecciona una carta de tu colección</h3>
+                                <div id="collection-cards" class="pokemon-grid"></div>
+                                <button id="close-modal">Cerrar</button>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="trade-offer">
                         <h3>Oferta del otro:</h3>
@@ -38,6 +50,7 @@
                 <button id="trade-button" class="action-button" disabled>Realizar Intercambio</button>
                 <p id="trade-message" class="trade-message"></p>
             </section>
+            
         </main>
         <nav class="bottom-nav">
             <a href="../../index.html" class="nav-button">
