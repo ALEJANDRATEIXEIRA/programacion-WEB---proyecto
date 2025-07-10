@@ -176,45 +176,69 @@ function mostrarCartasSeleccionadasPartner(cards) {
 //Intercambio de cartas cuando ambos confirmen
 
 let intercambioConfirmado = false;
+let partnerConfirmado = false;
+let mySelectedIds = [];
+let partnerSelectedIds = [];
 
 document.getElementById('realizar-intercambio-btn').addEventListener('click', () => {
-    // Envía confirmación de intercambio
+    mySelectedIds = selectedCards.map(c => c.id);
     channel.publish('confirmar-intercambio', {
-        selected: selectedCards.map(c => c.id),
+        selected: mySelectedIds,
         clientId: ably.connection.id
     });
     intercambioConfirmado = true;
     tradeMessage.textContent = "Esperando confirmación del otro usuario...";
+
+    if (partnerConfirmado) {
+        realizarIntercambio();
+    }
 });
 
-// Recibe confirmación del otro usuario
+
 channel.subscribe('confirmar-intercambio', async (mensaje) => {
-    if (mensaje.data.clientId === ably.connection.id) return; // Ignora tus propios mensajes
+    if (mensaje.data.clientId === ably.connection.id) return;
 
-    // Solo intercambia si tú también confirmaste
+    partnerSelectedIds = mensaje.data.selected;
+    partnerConfirmado = true;
+
     if (intercambioConfirmado) {
-        // Quita tus cartas seleccionadas de obtainedCards
-        obtainedCards = obtainedCards.filter(card => !selectedCards.some(sel => sel.id === card.id));
-        // Agrega las cartas del otro usuario 
-        for (const id of mensaje.data.selected) {
-            const card = await getPokemonData(id);
-            if (card && !obtainedCards.some(c => c.id === card.id)) {
-                obtainedCards.push(card);
-            }
-        }
-
-        //Guarda en local storage
-        saveCardsToLocalStorage();
-        // Limpia selección y actualiza UI
-        selectedCards = [];
-        mostrarCartasSeleccionadas([]);
-        renderUnlockedCards(collectionCards, mostrarCartasSeleccionadas);
-        tradeMessage.textContent = "¡Intercambio realizado!";
-        intercambioConfirmado = false;
-    }else{
-        tradeMessage.textContent = "Esperando confirmación del otro usuario...";
+        await realizarIntercambio();
     }
-        
-    
-    
+});
+
+
+async function realizarIntercambio() {
+    // Quitar tus cartas seleccionadas de obtainedCards
+    obtainedCards = obtainedCards.filter(card => !selectedCards.some(sel => sel.id === card.id));
+
+    // Agregar las cartas seleccionadas del otro usuario
+    for (const card of partnerSelectedCards) {
+        if (card && !obtainedCards.some(c => c.id === card.id)) {
+            obtainedCards.push(card);
+        }
+    }
+
+    // Limpiar selección y actualizar UI
+    selectedCards = [];
+    partnerSelectedCards = [];
+    mostrarCartasSeleccionadas([]);
+    mostrarCartasSeleccionadasPartner([]);
+    renderUnlockedCards(collectionCards, mostrarCartasSeleccionadas);
+
+    tradeMessage.textContent = "¡Intercambio realizado!";
+    intercambioConfirmado = false;
+    partnerConfirmado = false;
+    saveCardsToLocalStorage();
+}
+
+
+
+
+
+
+
+//Cierra los canales cuando se sale de la vista
+window.addEventListener('beforeunload', () => {
+    channel.detach();
+    ably.close();
 });
