@@ -88,6 +88,12 @@ function renderPokemonGrid() {
             const unlockedPokemonData = obtainedCards.find(card => card.id === pokemon.id);
             cardDiv.classList.add('unlocked');
             const imageUrl = unlockedPokemonData.sprites.front_default;
+            
+            // Aplicar color de fondo según el tipo principal del Pokémon
+            const mainType = unlockedPokemonData.types[0]?.type?.name || 'normal';
+            const bgColor = TYPE_COLORS[mainType] || TYPE_COLORS['normal'];
+            cardDiv.style.backgroundColor = bgColor;
+            
             cardDiv.innerHTML = `
                 <img src="${imageUrl}" alt="${capitalize(unlockedPokemonData.name)}">
                 <p>${capitalize(unlockedPokemonData.name)}</p>

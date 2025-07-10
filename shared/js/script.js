@@ -82,4 +82,44 @@ function mostrarModalPokemon(pokemonData) {
     pokemonDetailModal.classList.remove('hidden');
 }
 
+// Mapeo de colores por tipo de Pokémon
+const TYPE_COLORS = {
+    fire: '#F08030',
+    water: '#6890F0',
+    grass: '#78C850',
+    electric: '#F8D030',
+    psychic: '#F85888',
+    ice: '#98D8D8',
+    dragon: '#7038F8',
+    dark: '#705848',
+    fairy: '#EE99AC',
+    normal: '#A8A878',
+    fighting: '#C03028',
+    flying: '#A890F0',
+    poison: '#A040A0',
+    ground: '#E0C068',
+    rock: '#B8A038',
+    bug: '#A8B820',
+    ghost: '#705898',
+    steel: '#B8B8D0',
+};
+function createPokemonCardElement(pokemon, isOpenedPack = false) {
+    const cardDiv = document.createElement('div'); // Crea un nuevo div
+    cardDiv.classList.add('pokemon-card', 'unlocked'); // Le añade clases CSS
+    cardDiv.dataset.id = pokemon.id; // Guarda el ID del Pokémon como un atributo de datos HTML
+
+    const imageUrl = pokemon.sprites.front_default;
+
+    // Aplicar color de fondo según el tipo principal del Pokémon
+    const mainType = pokemon.types[0]?.type?.name || 'normal';
+    const bgColor = TYPE_COLORS[mainType] || TYPE_COLORS['normal'];
+    cardDiv.style.backgroundColor = bgColor;
+    
+    cardDiv.innerHTML = `
+        <img src="${imageUrl}" alt="${capitalize(pokemon.name)}">
+        <p>${capitalize(pokemon.name)}</p>
+    `;
+
+    return cardDiv; // Devuelve el elemento div de la carta
+}
 

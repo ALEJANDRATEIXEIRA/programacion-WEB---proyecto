@@ -70,6 +70,12 @@ function createPokemonCardElement(pokemon, isOpenedPack = false) {
         // Cara frontal (frente)
         const caraFrente = document.createElement('div');
         caraFrente.className = 'cara frente';
+        
+        // Aplicar color de fondo según el tipo principal del Pokémon
+        const mainType = pokemon.types[0]?.type?.name || 'normal';
+        const bgColor = TYPE_COLORS[mainType] || TYPE_COLORS['normal'];
+        caraFrente.style.backgroundColor = bgColor;
+        
         caraFrente.innerHTML = `
             <img src="${pokemon.sprites.front_default}" alt="${capitalize(pokemon.name)}" width="100" height="100">
             <p>${capitalize(pokemon.name)}</p>
