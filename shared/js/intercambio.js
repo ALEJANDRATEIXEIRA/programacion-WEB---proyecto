@@ -80,8 +80,17 @@ function mostrarCartasSeleccionadas(cards) {
             </div>
         `;
     });
-    // Si quieres limitar el botón de intercambio solo si hay 1-3 seleccionadas:
+    //limitar el botón de intercambio solo si hay 1-3 seleccionadas:
     document.getElementById('trade-button').disabled = cards.length === 0 || cards.length > 3;
+
+     // ACTUALIZA EL INDICADOR 
+    const indicator = document.getElementById('selected-indicator');
+    if (indicator) {
+        let html = `<span>${cards.length}/3</span>`;
+        
+        indicator.innerHTML = html;
+    }
+
 }
 
 // Mostrar modal y cartas desbloqueadas

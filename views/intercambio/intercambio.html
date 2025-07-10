@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intercambiar Cartas</title>
-    <link rel="stylesheet" href="intercambio.css">
     <link rel="stylesheet" href="../../shared/css/common.css">
+    <link rel="stylesheet" href="intercambio.css">
     <link rel="stylesheet" href="../../shared/css/vars.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
                     </ul>
                 </div>
                 <div class="trade-interface">
-                    
+
                     <div class="trade-offer">
                         <h3>Tu oferta:</h3>
                         <div id="your-offer-card" class="offer-card-placeholder">
@@ -33,9 +33,12 @@
                         <!-- Apartado de seleccion -->
                         <div id="collection-modal" class="modal hidden">
                             <div class="modal-content">
+                                <div class="selected-indicator-container">
+                                    <div id="selected-indicator" class="selected-indicator">0/3</div>
+                                </div>
                                 <h3>Selecciona una carta de tu colección</h3>
                                 <div id="collection-cards" class="pokemon-grid"></div>
-                                <button id="close-modal">Cerrar</button>
+                                <button id="close-modal" class="confirm-button">Confirmar</button>
                             </div>
                         </div>
 

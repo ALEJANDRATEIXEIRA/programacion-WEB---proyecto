@@ -81,28 +81,125 @@
 
 /* Estilos para ventana de seleccion*/
 
+.modal-content {
+    position: relative;
+}
+
+.selected-indicator-container {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+}
+
+.selected-indicator {
+    background: #3f51b5;
+    color: white;
+    border-radius: 18px;
+    padding: 0 9px;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 2px 6px rgba(63,81,181,0.18);
+   
+}
+
+
+
+.confirm-button {
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-size: 1.05em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 10px rgba(24,90,157,0.09);
+    cursor: pointer;
+    margin-top: 18px;
+    transition: background 0.3s, transform 0.15s;
+    outline: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.confirm-button:hover,
+.confirm-button:focus {
+    background: linear-gradient(90deg, #36d1c4 0%, #5b86e5 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 18px rgba(24,90,157,0.18);
+}
+
+.confirm-button:active {
+    background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+    transform: scale(0.98);
+}
+
+
+
+
+/*Estilos de las cards*/
+
 #collection-cards {
   max-height: 320px;      
   overflow-y: auto;
   padding-right: 8px;     
 }
 
+.pokemon-grid{
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+}
+.pokemon-card {
+    height: 120px;
+    margin: 6px;
+}
+
+
 
 .pokemon-card.selected {
   outline: 3px solid var(--color-primary, #3f51b5);
   box-shadow: 0 0 0 3px #aac6ff66;
+  background-color: #d6dddc;
 }
 
+
+/*Estilos de cartas seleccionadas*/
 .pokemon-card.mini {
-  width: 55px;
-  height: 70px;
+  width: 75px;
+  height: 100px;
   display: inline-block;
   margin: 2px;
   font-size: 0.7em;
 }
 .pokemon-card.mini img {
-  max-width: 80%;
+  max-width: 100%;
 }
 
 
 
+
+
+@media (max-width: 768px) {
+    .pokemon-grid,
+    .pack-results-grid {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 0.5fr));
+        gap: 12px;
+    }
+    .pokemon-card {
+        height: 100px;
+    }
+    
+    
+}
+@media (max-width: 350px) {
+  .modal-content h3 {
+    font-size: 0.95em;
+  }
+  .pokemon-card.mini{
+        height: 80px;
+    }
+}
