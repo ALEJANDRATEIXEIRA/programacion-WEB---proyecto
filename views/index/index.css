@@ -111,3 +111,18 @@
 .type:focus {
     outline: 2px solid var(--color-primary);
 }
+
+@media (max-width: 480px) {
+  .pokemon-grid {
+    display: grid;
+    gap: 7px; /* Reduce el espacio entre cartas */
+    justify-items: center;
+    
+  }
+  .pokemon-card {
+    box-sizing: border-box;
+    width: 90px;   
+    max-width: 100%;
+    margin: 0;
+  }
+}
