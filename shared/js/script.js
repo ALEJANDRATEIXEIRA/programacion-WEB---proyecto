@@ -47,7 +47,7 @@ function actualizarProgresoColeccion() {
 
 
 // --- 5. Funciones para Consumir la PokeAPI ---
-const pokemonCache = {};
+const pokemonCache = [];
 async function getPokemonData(id) {
     let pokemon = pokemonCache.find(p => p.id === id);
     if (pokemon) return pokemon;
@@ -69,7 +69,6 @@ async function getPokemonData(id) {
     pokemonCache.push(minimalData);
     return minimalData;
 }
-
 
 
 // Modal de detalle de Pokémon Esta es una función global
@@ -135,4 +134,3 @@ function createPokemonCardElement(pokemon, isOpenedPack = false) {
 
     return cardDiv; // Devuelve el elemento div de la carta
 }
-

@@ -71,7 +71,6 @@ function renderPokemonGrid() {
             pokemon.name.toLowerCase().includes(searchTerm)
         );
     }
-
     // Filtro por tipo si hay tipo seleccionado
     if (selectedType && selectedType.length > 0) {
         filteredPokemon = filteredPokemon.filter(pokemon => {
@@ -80,7 +79,6 @@ function renderPokemonGrid() {
             return unlocked.types.some(t => t.type.name === selectedType);
         });
     }
-    
     filteredPokemon.forEach(pokemon => {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('pokemon-card');

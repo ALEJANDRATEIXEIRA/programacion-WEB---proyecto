@@ -295,4 +295,17 @@ h1 {
         padding: 4px 6px;
     }
 
+    .pokemon-card p {
+        font-size: 0.8em;
+        max-width: 60px;
+    }
+    .pokemon-card {
+        min-width: 70px;
+        max-width: 80px;
+        padding: 2px;
+    }
+    .modal-content {
+        padding: 8px;
+    }
+
 }

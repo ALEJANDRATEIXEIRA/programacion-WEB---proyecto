@@ -18,7 +18,6 @@ async function openNewPack() {
     openPackButton.disabled = true;
     packResultsContainer.innerHTML = '';
     const chosenPokemonIds = new Set();
-
     while (chosenPokemonIds.size < 6) {
         const randomId = Math.floor(Math.random() * POKEMON_COUNT) + 1;
         chosenPokemonIds.add(randomId);
@@ -27,6 +26,7 @@ async function openNewPack() {
     const idsToFetch = Array.from(chosenPokemonIds);
     const fetchPromises = idsToFetch.map(id => getPokemonData(id));
     const fetchedPokemonData = await Promise.all(fetchPromises);
+    
     for (const pokemonData of fetchedPokemonData) {
         if (pokemonData) {
             const exists = obtainedCards.some(card => card.id === pokemonData.id);
@@ -37,7 +37,6 @@ async function openNewPack() {
             packResultsContainer.appendChild(cardElement);
         }
     }
-    
     saveCardsToLocalStorage();
     openPackButton.disabled = false;
     actualizarProgresoColeccion();
