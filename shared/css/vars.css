@@ -1,0 +1,27 @@
+/* 
+   Variables CSS globales para la paleta de colores y estilos principales de la app.
+   Permiten mantener la coherencia visual y facilitar cambios de diseño en todo el proyecto.
+   Se definen en :root para que estén disponibles en cualquier archivo CSS.
+*/
+:root {
+    --color-primary: #3f51b5;
+    --color-secondary: #4CAF50;
+    --color-accent: #ff9800;
+    --color-background: #f0f2f5;
+    --color-white: #fff;
+    --color-gray: #eceff1;
+    --color-dark: #333;
+    --color-progress: rgb(6, 204, 178);
+    --color-warning: #e91e63;
+    --color-success: #45a049;
+    --color-nav-active: #ffeb3b;
+    --color-modal-bg: rgba(0,0,0,0.6);
+    --color-card-locked: #607d8b;
+    --color-card-locked-text: #fff;
+    --color-card-locked-border: #90a4ae;
+    --color-card-locked-bg: #cfd8dc;
+    --color-list-bg: #e8f5e9;
+    --color-list-text: #666;
+    --color-list-title: #555;
+    --color-list-border: #ddd;
+}

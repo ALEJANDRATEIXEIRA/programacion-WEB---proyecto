@@ -1,0 +1,337 @@
+@import 'vars.css';
+
+/* Estilos Generales entre las ventanas */
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-dark);
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.content-section {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 15px;
+    padding-bottom: 70px;
+}
+
+.page-section {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.page-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 1.8em;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 0;
+}
+
+/* Estilos para la barra de navegación */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 800px;
+    height: 60px;
+    background-color: var(--color-primary);
+    border-top: 1px solid var(--color-list-border);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    margin: 0 auto;
+    right: 0;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 0.9em;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    flex: 1;
+}
+
+.nav-button:hover {
+    color: var(--color-nav-active);
+}
+
+.nav-button.active {
+    color: var(--color-nav-active);
+    font-weight: bold;
+}
+
+.nav-button a {
+    text-decoration: none;
+    color: var(--color-white);
+    font-size: 1.4em;
+    margin-bottom: 3px;
+}
+
+.nav-img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+    filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.10));
+    transition: filter 0.2s;
+}
+
+
+/* Diseño para las cartas Pokémon utilizables en común en las 3 ventanas */
+.pokemon-grid,
+.pack-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 10px;
+    justify-content: center;
+}
+
+.pokemon-card {
+    background-color: #eceff1;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 120px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.pokemon-card:hover:not(.locked) {
+    transform: translateY(-5px);
+}
+
+.pokemon-card img {
+    max-width: 70%;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+.pokemon-card p {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-top: 5px;
+    text-transform: capitalize;
+}
+
+.pokemon-card.locked {
+    background-color: #607d8b;
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+
+.pokemon-card.locked img,
+.pokemon-card.locked p {
+    display: none;
+}
+
+
+/* Diseño para los modales comunes */
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal.hidden {
+    display: none !important;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 25px;
+    border-radius: 16px;
+    width: 90vw;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    animation: zoomIn 0.3s ease-out;
+    text-align: center;
+}
+
+.close-button {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+}
+
+.modal-content h2 {
+    font-size: 1.8em;
+    color: #3f51b5;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.modal-content img {
+    max-width: 60%;
+    height: auto;
+    margin: 10px auto;
+    image-rendering: pixelated;
+}
+
+.modal-content p {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.modal-content h3 {
+    font-size: 1.2em;
+    color: #555;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+#modal-pokemon-stats {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+#modal-pokemon-stats li {
+    background-color: #e0f2f7;
+    padding: 5px 10px;
+    margin-bottom: 3px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95em;
+}
+
+/* Estilos para el modal de bienvenida */
+#welcome-modal .modal-content h3 {
+    color: rgba(63, 81, 181, 0.7);
+    font-weight: bold;
+}
+
+#welcome-modal .author-name {
+    color: rgba(63, 81, 181, 0.7);
+    font-weight: 500;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#welcome-modal .modal-content ul {
+    padding-left: 0;
+}
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+} 
+
+/* Responsive para las zonas comunes */
+@media (min-width: 768px) {
+    .pokemon-grid,
+    .pack-results-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+    }
+    .pokemon-card {
+        height: 140px;
+    }
+}
+
+/* Esto es para que el modal de la información de los pokémon quede centrada en responsive */
+@media (max-width: 480px) {
+    .modal {
+        width: 98vw;
+        max-width: 98vw;
+        padding: 10px;
+    }
+
+    .modal-content {
+        max-width: 98vw;
+        padding: 10px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.2em;
+    }
+
+    .modal-content img {
+        max-width: 80%;
+    }
+
+    #modal-pokemon-stats li {
+        font-size: 0.9em;
+        padding: 4px 6px;
+    }
+
+    .pokemon-card p {
+        font-size: 0.8em;
+        max-width: 60px;
+    }
+    .pokemon-card {
+        min-width: 70px;
+        max-width: 80px;
+        padding: 2px;
+    }
+    .modal-content {
+        padding: 8px;
+    }
+
+}

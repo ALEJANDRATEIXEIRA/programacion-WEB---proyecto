@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intercambiar Cartas</title>
+    <link rel="stylesheet" href="../../shared/css/common.css">
+    <link rel="stylesheet" href="intercambio.css">
+    <link rel="stylesheet" href="../../shared/css/vars.css">
+    <script src="https://cdn.ably.io/lib/ably.min-1.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <main class="content-section">
+
+            <section id="trade-section" class="page-section active">
+                <h1>Intercambiar Cartas</h1>
+                
+                <div class="trade-interface">
+                    <!-- Vista de la oferta del Usuario 1 -->
+                    <div class="trade-offer">
+                        <h3>Tu oferta:</h3>
+                        <div id="your-offer-card" class="offer-card-placeholder">
+                            Selecciona una carta
+                        </div>
+                        <button id="select-your-card-button" class="select-card-button">Seleccionar de mi colección</button>
+                        
+                        <!-- Apartado de seleccion -->
+                        <div id="collection-modal" class="modal hidden">
+                            <div class="modal-content">
+                                <div class="selected-indicator-container">
+                                    <div id="selected-indicator" class="selected-indicator">0/3</div>
+                                </div>
+                                <h3>Selecciona una carta de tu colección</h3>
+    
+                                <div class="search-container">
+                                    <input type="text" id="pokemon-search-trade" class="search-input" placeholder="Buscar Pokémon por nombre...">
+                                </div>
+                                
+                                <div id="collection-cards" class="pokemon-grid"></div>
+                                <button id="close-modal" class="confirm-button">Confirmar</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Vista de la oferta de cartas del Usuario 2 -->
+                    <div class="trade-offer">
+                        <h3>Oferta del otro:</h3>
+                        <div id="partner-offer-card" class="offer-card-placeholder">
+                            Esperando oferta
+                        </div>
+                    </div>
+                </div>
+                <button id="realizar-intercambio-btn" class="action-button" disabled>Realizar Intercambio</button>
+                <p id="trade-message" class="trade-message"></p>
+            </section>
+            
+        </main>
+
+        <!-- Modal de Bienvenida -->
+        <nav class="bottom-nav">
+            <a href="../../index.html" class="nav-button">
+                <img src="../../assets/icons/home-icon.png" alt="Colección" class="nav-img" />
+                <span>Colección</span>
+            </a>
+            <a href="../sobres/sobres.html" class="nav-button">
+                <img src="../../assets/icons/package-icon.png" alt="Sobres" class="nav-img" />
+                <span>Sobres</span>
+            </a>
+            <a href="intercambio.html" class="nav-button active">
+                <img src="../../assets/icons/exchange-icon.png" alt="Intercambio" class="nav-img" />
+                <span>Intercambio</span>
+            </a>
+        </nav>
+    </div>
+    
+    <script src="../../shared/js/script.js" defer></script>
+    <script src="../../shared/js/intercambio.js" defer></script>
+</body>
+</html>
