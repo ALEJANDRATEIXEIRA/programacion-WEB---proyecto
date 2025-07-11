@@ -253,6 +253,22 @@ h1 {
     font-size: 0.95em;
 }
 
+/* Estilos para el modal de bienvenida */
+#welcome-modal .modal-content h3 {
+    color: rgba(63, 81, 181, 0.7);
+    font-weight: bold;
+}
+#welcome-modal .author-name {
+    color: rgba(63, 81, 181, 0.7);
+    font-weight: 500;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+#welcome-modal .modal-content ul {
+    padding-left: 0;
+}
+
 @keyframes zoomIn {
     from { opacity: 0; transform: scale(0.9); }
     to { opacity: 1; transform: scale(1); }

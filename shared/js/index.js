@@ -60,6 +60,32 @@ if (closeButton && pokemonDetailModal) {
     });
 }
 
+// --- Modal de Bienvenida ---
+window.addEventListener('DOMContentLoaded', () => {
+    const welcomeModal = document.getElementById('welcome-modal');
+    const closeWelcome = document.getElementById('close-welcome');
+    if (welcomeModal && closeWelcome) {
+        // Listeners SIEMPRE activos
+        closeWelcome.addEventListener('click', () => {
+            welcomeModal.classList.add('hidden');
+            localStorage.setItem('welcomeShown', 'true');
+        });
+        
+        welcomeModal.addEventListener('click', (e) => {
+            if (e.target === welcomeModal) {
+                welcomeModal.classList.add('hidden');
+                localStorage.setItem('welcomeShown', 'true');
+            }
+        });
+
+        if (!localStorage.getItem('welcomeShown')) {
+            welcomeModal.classList.remove('hidden');
+        } else {
+            welcomeModal.classList.add('hidden');
+        }
+    }
+});
+
 // --- Renderizado de Pokémon ---
 function renderPokemonGrid() {
     if (!pokemonGrid) return;
