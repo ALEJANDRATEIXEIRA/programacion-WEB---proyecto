@@ -1,5 +1,7 @@
 @import 'vars.css';
 
+/* Estilos Generales entre las ventanas */
+
 html, body {
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -49,6 +51,7 @@ h1 {
     margin-top: 0;
 }
 
+/* Estilos para la barra de navegación */
 .bottom-nav {
     display: flex;
     justify-content: space-around;
@@ -105,6 +108,8 @@ h1 {
     transition: filter 0.2s;
 }
 
+
+/* Diseño para las cartas Pokémon utilizables en común en las 3 ventanas */
 .pokemon-grid,
 .pack-results-grid {
     display: grid;
@@ -161,6 +166,8 @@ h1 {
     display: none;
 }
 
+
+/* Diseño para los modales comunes */
 .modal {
     display: flex;
     position: fixed;
@@ -258,6 +265,7 @@ h1 {
     color: rgba(63, 81, 181, 0.7);
     font-weight: bold;
 }
+
 #welcome-modal .author-name {
     color: rgba(63, 81, 181, 0.7);
     font-weight: 500;
@@ -265,6 +273,7 @@ h1 {
     margin-left: 0;
     padding-left: 0;
 }
+
 #welcome-modal .modal-content ul {
     padding-left: 0;
 }
@@ -274,6 +283,7 @@ h1 {
     to { opacity: 1; transform: scale(1); }
 } 
 
+/* Responsive para las zonas comunes */
 @media (min-width: 768px) {
     .pokemon-grid,
     .pack-results-grid {
