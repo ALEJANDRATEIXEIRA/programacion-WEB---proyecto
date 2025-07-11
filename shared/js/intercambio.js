@@ -21,9 +21,12 @@ const tradeMessage = document.getElementById('trade-message');
 const collectionModal = document.getElementById('collection-modal');
 const collectionCards = document.getElementById('collection-cards');
 
+// Elementos de búsqueda
+const pokemonSearchTrade = document.getElementById('pokemon-search-trade');
 
 // Variables globales para la selección
 let selectedCards = [];
+let searchTermTrade = '';
 
 //Funcion de renderizado de cartas desbloqueadas
 function renderUnlockedCards(container, onCardSelect) {
@@ -33,7 +36,22 @@ function renderUnlockedCards(container, onCardSelect) {
         return;
     }
 
-    obtainedCards.forEach(card => {
+    // Filtrar cartas según búsqueda por nombre
+    let filteredCards = obtainedCards;
+    
+    // Filtro por nombre
+    if (searchTermTrade && searchTermTrade.length > 0) {
+        filteredCards = filteredCards.filter(card =>
+            card.name.toLowerCase().includes(searchTermTrade.toLowerCase())
+        );
+    }
+
+    if (filteredCards.length === 0) {
+        container.innerHTML = "<p>No se encontraron Pokémon con los filtros aplicados.</p>";
+        return;
+    }
+
+    filteredCards.forEach(card => {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('pokemon-card', 'unlocked');
         cardDiv.dataset.id = card.id;
@@ -105,6 +123,14 @@ document.getElementById('select-your-card-button').addEventListener('click', () 
 document.getElementById('close-modal').addEventListener('click', () => {
     collectionModal.classList.add('hidden');
 });
+
+// Event listener para búsqueda por nombre
+if (pokemonSearchTrade) {
+    pokemonSearchTrade.addEventListener('input', (e) => {
+        searchTermTrade = e.target.value.trim();
+        renderUnlockedCards(collectionCards, mostrarCartasSeleccionadas);
+    });
+}
 
 
 
