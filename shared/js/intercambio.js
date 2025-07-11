@@ -128,15 +128,18 @@ function mostrarCartasSeleccionadas(cards) {
 }
 
 /** 
- * -Al hacer clic en el botón para seleccionar cartas, muestra el modal de selección
- * -Al renderiza las cartas desbloqueadas del usuario para que pueda elegir cuáles ofrecer en el intercambio.
+ * - Al hacer clic en el botón para seleccionar cartas, muestra el modal de selección
+ * - Al renderiza las cartas desbloqueadas del usuario para que pueda elegir cuáles ofrecer en el intercambio.
 */
 document.getElementById('select-your-card-button').addEventListener('click', () => {
     collectionModal.classList.remove('hidden');
     renderUnlockedCards(collectionCards, mostrarCartasSeleccionadas);
 });
 
-// Cerrar modal
+/**
+ * - Al hacer clic en el botón de cerrar, oculta el modal de selección de cartas.
+ * - Esto permite al usuario salir del modal sin realizar ninguna acción.
+ */
 document.getElementById('close-modal').addEventListener('click', () => {
     collectionModal.classList.add('hidden');
 });
