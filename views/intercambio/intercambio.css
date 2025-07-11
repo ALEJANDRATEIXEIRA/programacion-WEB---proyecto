@@ -2,30 +2,7 @@
 @import '../../shared/css/vars.css';
 
 /* Estilos específicos para Intercambiar Cartas */
-.user-list {
-    margin-bottom: 20px;
-    text-align: center;
-}
-.user-list h2 {
-    font-size: 1.3em;
-    color: #555;
-    margin-bottom: 10px;
-}
-#connected-users {
-    list-style: none;
-    padding: 0;
-    font-size: 1.1em;
-    color: #666;
-}
-#connected-users li {
-    background-color: #e8f5e9;
-    padding: 8px 15px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    display: inline-block;
-    margin-right: 5px;
-    font-weight: bold;
-}
+
 .trade-interface {
     display: flex;
     flex-direction: column;
