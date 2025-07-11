@@ -227,8 +227,9 @@ async function realizarIntercambio() {
 
 
 
-
+// Al entrar a la vista de int
 document.addEventListener('DOMContentLoaded', () => {
+    channel.publish('sync-request', { clientId: ably.connection.id });
     enviarSeleccion(); // <-- Esto asegura que el otro usuario reciba tu selección al entrar
 });
 
