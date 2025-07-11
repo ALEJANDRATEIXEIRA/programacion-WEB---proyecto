@@ -228,7 +228,9 @@ async function realizarIntercambio() {
 
 
 
-
+document.addEventListener('DOMContentLoaded', () => {
+    enviarSeleccion(); // <-- Esto asegura que el otro usuario reciba tu selección al entrar
+});
 
 
 //Cierra los canales cuando se sale de la vista
