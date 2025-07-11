@@ -32,7 +32,7 @@ Pokémon TCG Virtual es una aplicación web que simula la experiencia de colecci
   - Flexbox y Grid  
   - Animaciones y transiciones  
   - Media queries para responsive  
-- **JavaScript (Vanilla)**:  
+- **JavaScript**:  
   - `async/await` para asincronía  
   - Fetch API para consumir la PokeAPI  
   - LocalStorage para persistencia  
@@ -59,7 +59,7 @@ Pokémon TCG Virtual es una aplicación web que simula la experiencia de colecci
 
 ---
 
-## Créditos
+## Créditos 
 
 - [@Alejandra Teixeira](https://github.com/ALEJANDRATEIXEIRA)
 - [@Juan Arocha](https://github.com/jgarocha22)
