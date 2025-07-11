@@ -5,8 +5,6 @@
 
 /* Estilos específicos para Abrir Sobres */
 
-
-
 .imagenSobre {
     display: block;
     margin: 0 auto 20px auto;
@@ -49,11 +47,7 @@
     margin-bottom: 6px;
 }
 
-
-
-
-
-/* Estilos para botones y resultados del sobre*/
+/* Estilos para botones y resultados del sobre */
 
 
 #post-open-view {
@@ -91,7 +85,7 @@
 }
 
 
-/*Css para animacion de la carta al voltear*/
+/* CSS para animacion de la carta al voltear */
 
 .carta-box {
   width: 110px;
