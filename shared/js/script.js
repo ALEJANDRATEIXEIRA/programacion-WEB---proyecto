@@ -1,5 +1,9 @@
-// --- Parte lógica para las cosas globales ---
+// Parte lógica para las cosas globales
 
+/* ==========================
+     Sección de Variables
+   ==========================
+*/
 
 // Elementos de la Sección "Abrir un Sobre"
 const openPackButton = document.getElementById('open-pack-button'); // Botón para abrir sobres
@@ -19,22 +23,58 @@ const modalPokemonImage = document.getElementById('modal-pokemon-image');
 const modalPokemonType = document.getElementById('modal-pokemon-type');
 const modalPokemonStats = document.getElementById('modal-pokemon-stats');
 
-// --- 2. Variables de Datos Globales ---
+// Variables de Datos Globales
 const POKEMON_COUNT = 150;
 const POKEAPI_BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 let obtainedCards = JSON.parse(localStorage.getItem('pokemonCollection')) || [];
 let allPokemonData = [];
 let searchTerm = '';
+const pokemonCache = [];
+const TYPE_COLORS = {
+    fire: '#F08030',
+    water: '#6890F0',
+    grass: '#78C850',
+    electric: '#F8D030',
+    psychic: '#F85888',
+    ice: '#98D8D8',
+    dragon: '#7038F8',
+    dark: '#705848',
+    fairy: '#EE99AC',
+    normal: '#A8A878',
+    fighting: '#C03028',
+    flying: '#A890F0',
+    poison: '#A040A0',
+    ground: '#E0C068',
+    rock: '#B8A038',
+    bug: '#A8B820',
+    ghost: '#705898',
+    steel: '#B8B8D0',
+};
 
-// --- 3. Funciones de Utilidad ---
+
+/**
+ * Convierte la primera letra de un string a mayúscula y deja el resto igual.
+ * Útil para mostrar nombres de Pokémon y tipos de forma más legible en la interfaz.
+ *
+ * @param {string} string - El texto a capitalizar.
+ * @returns {string} El texto con la primera letra en mayúscula.
+ */
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * Guarda la colección de cartas obtenidas en el almacenamiento local del navegador.
+ * Así, la colección del usuario se conserva aunque cierre o recargue la página.
+ */
 function saveCardsToLocalStorage() {
     localStorage.setItem('pokemonCollection', JSON.stringify(obtainedCards));
 }
 
+/**
+ * Guarda la colección actual de cartas Pokémon del usuario en el localStorage.
+ * Permite que la colección persista entre sesiones y recargas de la página.
+ */
 function actualizarProgresoColeccion() {
     const progreso = obtainedCards.length;
     const total = POKEMON_COUNT;
@@ -45,9 +85,15 @@ function actualizarProgresoColeccion() {
     if (progressLabel) progressLabel.textContent = `${progreso} / ${total} Pokémones desbloqueados`;
 }
 
-
-// --- 5. Funciones para Consumir la PokeAPI ---
-const pokemonCache = [];
+/**
+ * Obtiene los datos de un Pokémon por su ID.
+ * - Si ya está en la caché local (pokemonCache), lo devuelve directamente para evitar peticiones repetidas.
+ * - Si no está, consulta la PokeAPI, extrae solo los campos necesarios y los guarda en la caché.
+ * - Devuelve un objeto simplificado con la información relevante del Pokémon.
+ *
+ * @param {number} id - El ID del Pokémon a consultar.
+ * @returns {Object} Objeto con los datos mínimos del Pokémon (id, nombre, sprite, tipos y estadísticas).
+ */
 async function getPokemonData(id) {
     let pokemon = pokemonCache.find(p => p.id === id);
     if (pokemon) return pokemon;
@@ -71,7 +117,14 @@ async function getPokemonData(id) {
 }
 
 
-// Modal de detalle de Pokémon Esta es una función global
+/**
+ * Muestra el modal con los detalles de un Pokémon seleccionado.
+ * - Rellena el modal con el nombre, imagen, tipos y estadísticas del Pokémon.
+ * - Utiliza la función capitalize para mostrar los textos de forma legible.
+ * - Hace visible el modal en pantalla.
+ *
+ * @param {Object} pokemonData - Objeto con los datos del Pokémon a mostrar.
+ */
 function mostrarModalPokemon(pokemonData) {
     const pokemonDetailModal = document.getElementById('pokemon-detail-modal');
     const modalPokemonName = document.getElementById('modal-pokemon-name');
@@ -93,28 +146,16 @@ function mostrarModalPokemon(pokemonData) {
     pokemonDetailModal.classList.remove('hidden');
 }
 
-// Mapeo de colores por tipo de Pokémon
-const TYPE_COLORS = {
-    fire: '#F08030',
-    water: '#6890F0',
-    grass: '#78C850',
-    electric: '#F8D030',
-    psychic: '#F85888',
-    ice: '#98D8D8',
-    dragon: '#7038F8',
-    dark: '#705848',
-    fairy: '#EE99AC',
-    normal: '#A8A878',
-    fighting: '#C03028',
-    flying: '#A890F0',
-    poison: '#A040A0',
-    ground: '#E0C068',
-    rock: '#B8A038',
-    bug: '#A8B820',
-    ghost: '#705898',
-    steel: '#B8B8D0',
-};
-
+/**
+ * Crea y devuelve el elemento visual (div) de una carta de Pokémon para mostrar en la colección.
+ * - Asigna clases CSS y el ID del Pokémon como atributo de datos.
+ * - Muestra la imagen y el nombre del Pokémon.
+ * - Aplica un color de fondo según el tipo principal del Pokémon usando TYPE_COLORS.
+ *
+ * @param {Object} pokemon - Objeto con los datos del Pokémon.
+ * @param {boolean} isOpenedPack - (Opcional) Indica si la carta es de un sobre abierto (no usado aquí).
+ * @returns {HTMLElement} Elemento div listo para insertar en el DOM.
+ */
 function createPokemonCardElement(pokemon, isOpenedPack = false) {
     const cardDiv = document.createElement('div'); // Crea un nuevo div
     cardDiv.classList.add('pokemon-card', 'unlocked'); // Le añade clases CSS

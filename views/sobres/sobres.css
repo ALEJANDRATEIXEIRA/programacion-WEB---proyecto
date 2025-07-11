@@ -6,82 +6,83 @@
 /* Estilos específicos para Abrir Sobres */
 
 .imagenSobre {
-    display: block;
-    margin: 0 auto 20px auto;
-    width: 200px;
-    height: auto;
-    max-width: 100%;
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 200px;
+  height: auto;
+  max-width: 100%;
 }
 
 /* Estilos para informacion del sobre*/
 
 .sobre-info {
-    background: #ddae12;
-    border-radius: 12px;
-    padding: 15px ;
-    justify-content: center;
-    margin: 0 auto 20px auto; 
-    justify-items: center;
-    max-width: 350px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  background: #ddae12;
+  border-radius: 12px;
+  padding: 15px ;
+  justify-content: center;
+  margin: 0 auto 20px auto; 
+  justify-items: center;
+  max-width: 350px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .sobre-info h2 {
-    color: #3f51b5;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-    margin-top: 0;
-    text-align: center;
+  color: #3f51b5;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  margin-top: 0;
+  text-align: center;
 }
 
 .sobre-info ul {
-    list-style: disc inside;
-    padding: 0;
-    margin: 0;
-    color: #fafafa;
-    font-size: 1em;
+  list-style: disc inside;
+  padding: 0;
+  margin: 0;
+  color: #fafafa;
+  font-size: 1em;
 }
 
 .sobre-info li {
-    margin-bottom: 6px;
+  margin-bottom: 6px;
 }
 
 /* Estilos para botones y resultados del sobre */
 
-
 #post-open-view {
-    text-align: center;
+  text-align: center;
 }
-
 
 .action-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2em;
-    cursor: pointer;
-    margin: 20px auto; 
-    display: block;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: background-color 0.3s ease;
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin: 20px auto; 
+  display: block;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
 }
+
 .action-button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
+
 .pack-results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: center;
     
 }
+
 .pack-results-grid .pokemon-card {
-    height: 150px; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  height: 150px; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 
@@ -129,15 +130,15 @@
   border: 1.5px solid #cfd8dc;
 }
 .cara.detras{
-    background-color: #00a7fa;
-    background: #ddae12;
-    color: #fff;
-    font-size: 2em;
-    font-weight: bold;
-    cursor: open;
-    border-radius: 10px;
-    border: 1.5px solid #cfd8dc;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  background-color: #00a7fa;
+  background: #ddae12;
+  color: #fff;
+  font-size: 2em;
+  font-weight: bold;
+  cursor: open;
+  border-radius: 10px;
+  border: 1.5px solid #cfd8dc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
 }
 
 .cara.frente {
@@ -164,6 +165,7 @@
 }
 
 
+/* Responsive para la parte de Sobres */
 @media (min-width: 768px) {
   .carta-box {
     width: 120px;

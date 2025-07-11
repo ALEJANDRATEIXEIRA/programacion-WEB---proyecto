@@ -1,4 +1,9 @@
-// --- Parte lógica para Intercambio ---
+// Parte lógica para el Intercambio
+
+/* ==========================
+     Sección de Variables
+   ==========================
+*/
 
 // Elementos principales de la vista de intercambio
 const connectedUsersList = document.getElementById('connected-users');
@@ -7,14 +12,6 @@ const partnerOfferCard = document.getElementById('partner-offer-card');
 const selectYourCardButton = document.getElementById('select-your-card-button');
 const tradeButton = document.getElementById('trade-button');
 const tradeMessage = document.getElementById('trade-message');
-
-// Aquí se agregará la lógica para:
-// - Mostrar usuarios conectados
-// - Seleccionar carta de tu colección
-// - Mostrar la carta ofrecida por el otro usuario
-// - Habilitar/deshabilitar el botón de intercambio
-// - Mostrar mensajes de estado
-
 
 
 //Elementos de la vista de seleccionar cartas
@@ -28,7 +25,16 @@ const pokemonSearchTrade = document.getElementById('pokemon-search-trade');
 let selectedCards = [];
 let searchTermTrade = '';
 
-//Funcion de renderizado de cartas desbloqueadas
+/**
+ * Renderiza las cartas desbloqueadas del usuario en el contenedor indicado para la vista de intercambio.
+ * - Permite filtrar las cartas por nombre usando la variable searchTermTrade.
+ * - Muestra un mensaje si no hay cartas desbloqueadas o si ningún Pokémon coincide con el filtro.
+ * - Permite seleccionar o deseleccionar cartas (máximo 3), resaltando las seleccionadas.
+ * - Al seleccionar/deseleccionar, actualiza la visualización y llama a la función onCardSelect con las cartas seleccionadas.
+ *
+ * @param {HTMLElement} container - Contenedor donde se renderizan las cartas.
+ * @param {Function} onCardSelect - Callback que recibe el array de cartas seleccionadas.
+ */
 function renderUnlockedCards(container, onCardSelect) {
     container.innerHTML = '';
     if (!obtainedCards.length) {
@@ -86,7 +92,15 @@ function renderUnlockedCards(container, onCardSelect) {
     });
 }
 
-// Mostrar en el área de cartas seleccionadas
+/**
+ * Muestra visualmente las cartas seleccionadas para el intercambio en el área de oferta.
+ * - Renderiza las cartas seleccionadas en el contenedor correspondiente.
+ * - Habilita o deshabilita el botón de intercambio según la cantidad de cartas seleccionadas (solo permite entre 1 y 3).
+ * - Actualiza el indicador visual de cuántas cartas han sido seleccionadas.
+ * - Envía la selección actual al otro usuario (función enviarSeleccion).
+ *
+ * @param {Array} cards - Array de cartas seleccionadas para el intercambio.
+ */
 function mostrarCartasSeleccionadas(cards) {
     const offer = document.getElementById('your-offer-card');
     offer.innerHTML = '';
@@ -113,7 +127,10 @@ function mostrarCartasSeleccionadas(cards) {
 
 }
 
-// Mostrar modal y cartas desbloqueadas
+/** 
+ * -Al hacer clic en el botón para seleccionar cartas, muestra el modal de selección
+ * -Al renderiza las cartas desbloqueadas del usuario para que pueda elegir cuáles ofrecer en el intercambio.
+*/
 document.getElementById('select-your-card-button').addEventListener('click', () => {
     collectionModal.classList.remove('hidden');
     renderUnlockedCards(collectionCards, mostrarCartasSeleccionadas);
@@ -131,13 +148,6 @@ if (pokemonSearchTrade) {
         renderUnlockedCards(collectionCards, mostrarCartasSeleccionadas);
     });
 }
-
-
-
-
-
-
-
 
 // Variables y lógica para el otro usuario
 let partnerSelectedCards = [];
@@ -160,10 +170,6 @@ function enviarSeleccion() {
         clientId: ably.connection.id
     });
 }
-
-
-
-
 
 //Suscripcion para recibir la seleccion del otro usuario
 channel.subscribe('seleccion-cartas', async (mensaje) => {
@@ -259,8 +265,6 @@ channel.subscribe('sync-request', (mensaje) => {
     }
 });
 
-
-
 // Unirse a la presencia al entrar
 channel.presence.enter({ username: 'Usuario ' + ably.connection.id });
 
@@ -278,6 +282,7 @@ async function actualizarUsuariosConectados() {
         lista.appendChild(li);
     });
 }
+
 async function intentarUnirse() {
     const members = await channel.presence.get();
     if (members.length >= 2) {
@@ -286,11 +291,6 @@ async function intentarUnirse() {
     }
     channel.presence.enter({ username: 'Usuario ' + ably.connection.id });
 }
-
-
-
-
-
 
 // Al entrar a la vista de int
 document.addEventListener('DOMContentLoaded', () => {

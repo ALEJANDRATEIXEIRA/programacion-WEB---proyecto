@@ -1,4 +1,6 @@
-/* Estilos específicos para el Índice de Pokémon */
+/* Estilos específicos para la pantalla de Mi Colección */
+
+/* Diseño para contenedor de filtros */
 
 .search-filter-container {
     display: flex;
@@ -16,7 +18,8 @@
     font-size: 1em;
 }
 
-/* --- Barra de progreso --- */
+/* Diseño de barra de progreso de Pokémon */
+
 #collection-progress {
     width: 100%;
     height: 24px;
@@ -42,11 +45,14 @@
     background: #dadada;
     border-radius: 12px;
 }
+
 #collection-progress::-webkit-progress-value {
     background: rgb(6, 204, 178);
     border-radius: 12px;
     transition: width 0.4s;
 }
+
+/* Diseño de botones de filtros de Pokémon */
 
 .pokemon-type-filter {
     display: flex;
