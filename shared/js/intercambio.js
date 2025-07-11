@@ -234,8 +234,41 @@ channel.subscribe('sync-request', (mensaje) => {
 });
 
 
+
+// Unirse a la presencia al entrar
+channel.presence.enter({ username: 'Usuario ' + ably.connection.id });
+
+// Escuchar cambios en la presencia
+channel.presence.subscribe('enter', actualizarUsuariosConectados);
+channel.presence.subscribe('leave', actualizarUsuariosConectados);
+
+async function actualizarUsuariosConectados() {
+    const members = await channel.presence.get();
+    const lista = document.getElementById('connected-users');
+    lista.innerHTML = '';
+    members.forEach(member => {
+        const li = document.createElement('li');
+        li.textContent = member.data.username;
+        lista.appendChild(li);
+    });
+}
+async function intentarUnirse() {
+    const members = await channel.presence.get();
+    if (members.length >= 2) {
+        alert('El máximo de usuarios conectados es 2.');
+        return;
+    }
+    channel.presence.enter({ username: 'Usuario ' + ably.connection.id });
+}
+
+
+
+
+
+
 // Al entrar a la vista de int
 document.addEventListener('DOMContentLoaded', () => {
+    intentarUnirse();
     channel.publish('sync-request', { clientId: ably.connection.id });
     enviarSeleccion(); // <-- Esto asegura que el otro usuario reciba tu selección al entrar
 });
