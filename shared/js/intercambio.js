@@ -226,6 +226,13 @@ async function realizarIntercambio() {
 }
 
 
+channel.subscribe('sync-request', (mensaje) => {
+    // Si el que pide no soy yo y yo tengo cartas seleccionadas, le envío mi selección
+    if (mensaje.data.clientId !== ably.connection.id && selectedCards.length > 0) {
+        enviarSeleccion();
+    }
+});
+
 
 // Al entrar a la vista de int
 document.addEventListener('DOMContentLoaded', () => {
