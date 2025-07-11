@@ -1,6 +1,6 @@
-// --- Parte lógica para Sobres ---
+//  Parte lógica para Sobres
 
-//Para que funcione el cerrar los detalles del pokémon
+// Para que funcione el cerrar los detalles del pokémon
 if (closeButton && pokemonDetailModal) {
     closeButton.addEventListener('click', () => {
         pokemonDetailModal.classList.add('hidden');
@@ -12,7 +12,16 @@ if (closeButton && pokemonDetailModal) {
     });
 }
 
-// --- Lógica para Abrir Sobres 
+/**
+ * Lógica principal para abrir un nuevo sobre de cartas Pokémon.
+ * - Selecciona 6 Pokémon aleatorios (sin repetir) de la primera generación.
+ * - Obtiene los datos de cada Pokémon desde la API.
+ * - Agrega a la colección los que aún no han sido obtenidos.
+ * - Renderiza las cartas obtenidas con animación de apertura.
+ * - Actualiza el progreso y guarda la colección en localStorage.
+ * 
+ * Esta función se ejecuta al hacer clic en el botón de "Abrir Sobres".
+ */
 async function openNewPack() {
     if (!openPackButton || !packResultsContainer) return;
     openPackButton.disabled = true;
@@ -42,10 +51,25 @@ async function openNewPack() {
     actualizarProgresoColeccion();
 }
 
+/* 
+* -Asigna el evento de abrir un nuevo sobre solo si existen los elementos en el DOM.
+* -Esto asegura que la función openNewPack se ejecute al hacer clic en el botón correspondiente.
+*/
 if (openPackButton && packResultsContainer) {
     openPackButton.addEventListener('click', openNewPack);
 }
 
+
+/**
+ * Crea y devuelve el elemento visual de una carta de Pokémon.
+ * Si es una carta obtenida de un sobre (isOpenedPack = true), la carta tiene animación de "voltear" (flip)
+ * y solo muestra el modal de detalles cuando ya ha sido volteada.
+ * Si es para el índice, retorna una carta simple desbloqueada.
+ *
+ * @param {Object} pokemon - Objeto con los datos del Pokémon.
+ * @param {boolean} isOpenedPack - Indica si la carta es de un sobre recién abierto (animación flip).
+ * @returns {HTMLElement} Elemento de la carta listo para insertar en el DOM.
+ */
 function createPokemonCardElement(pokemon, isOpenedPack = false) {
     // Si es para el pack abierto (animación flip)
     if (isOpenedPack) {
@@ -106,8 +130,16 @@ function createPokemonCardElement(pokemon, isOpenedPack = false) {
 }
 
 
-// Lógica para mostrar las vistas de sobres
-
+/**
+ * Lógica de control de vistas para la sección de sobres.
+ * 
+ * - Alterna entre la vista previa (antes de abrir el sobre) y la vista de resultados (después de abrirlo).
+ * - Al hacer clic en "Abrir Sobres", muestra la vista de resultados (las cartas obtenidas).
+ * - Al hacer clic en "Abrir Otro Sobre", regresa a la vista previa y limpia los resultados anteriores.
+ * - Al cargar la página, siempre inicia mostrando la vista previa.
+ * 
+ * Esto permite una experiencia de usuario fluida y clara al abrir sobres múltiples veces.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const preOpenView = document.getElementById('pre-open-view');
     const postOpenView = document.getElementById('post-open-view');

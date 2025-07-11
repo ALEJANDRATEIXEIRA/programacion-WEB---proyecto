@@ -1,3 +1,8 @@
+/* 
+   Variables CSS globales para la paleta de colores y estilos principales de la app.
+   Permiten mantener la coherencia visual y facilitar cambios de diseño en todo el proyecto.
+   Se definen en :root para que estén disponibles en cualquier archivo CSS.
+*/
 :root {
     --color-primary: #3f51b5;
     --color-secondary: #4CAF50;

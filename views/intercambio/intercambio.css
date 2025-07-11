@@ -10,6 +10,7 @@
     margin-bottom: 20px;
     align-items: center;
 }
+
 .trade-offer {
     background-color: #eceff1;
     border-radius: 10px;
@@ -18,10 +19,12 @@
     width: 90%; 
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
 .trade-offer h3 {
     color: #3f51b5;
     margin-bottom: 10px;
 }
+
 .offer-card-placeholder {
     background-color: #cfd8dc;
     border: 2px dashed #90a4ae;
@@ -34,6 +37,9 @@
     font-style: italic;
     margin-bottom: 10px;
 }
+
+/* Diseño de selector de cartas */
+
 .select-card-button {
     background-color: #ff9800; 
     color: white;
@@ -44,17 +50,17 @@
     font-size: 0.9em;
     transition: background-color 0.3s ease;
 }
+
 .select-card-button:hover {
     background-color: #fb8c00;
 }
+
 .trade-message {
     text-align: center;
     font-weight: bold;
     margin-top: 15px;
     color: #e91e63;
 }
-
-
 
 /* Estilos para ventana de seleccion*/
 
@@ -82,7 +88,7 @@
    
 }
 
-
+/* Diseño de botones */
 
 .confirm-button {
     background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
@@ -115,10 +121,8 @@
     transform: scale(0.98);
 }
 
-
-
-
 /* Estilos para búsqueda en el modal de intercambio */
+
 .search-container {
     margin-bottom: 15px;
 }
@@ -151,12 +155,11 @@
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 15px;
 }
+
 .pokemon-card {
     height: 120px;
     margin: 6px;
 }
-
-
 
 .pokemon-card.selected {
   outline: 3px solid var(--color-primary, #3f51b5);
@@ -164,8 +167,8 @@
   background-color: #d6dddc;
 }
 
-
 /*Estilos de cartas seleccionadas*/
+
 .pokemon-card.mini {
   width: 75px;
   height: 100px;
@@ -182,14 +185,12 @@
   white-space: normal;
 }
 
+
 .pokemon-card.mini img {
   max-width: 100%;
 }
 
-
-
 /*Estilos de boton de realizar cambio*/
-
 
 #realizar-intercambio-btn {
     background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
@@ -232,7 +233,7 @@
 }
 
 
-
+/* Responsive para la parte de Intercambio */
 @media (max-width: 768px) {
     .pokemon-grid,
     .pack-results-grid {
@@ -248,6 +249,7 @@
         font-size: 13px;
     }
 }
+
 @media (max-width: 350px) {
   .modal-content h3 {
     font-size: 0.95em;

@@ -1,6 +1,6 @@
-// --- Parte lógica para mi colección ---
+// Parte lógica para Mi Colección
 
-// --- Búsqueda por nombre ---
+// Búsqueda por nombre de Pokémon
 if (pokemonSearch && pokemonGrid) {
     pokemonSearch.addEventListener('input', (e) => {
         searchTerm = e.target.value.trim().toLowerCase();
@@ -8,7 +8,11 @@ if (pokemonSearch && pokemonGrid) {
     });
 }
 
-// --- Drag-to-scroll para los chips de tipo ---
+/**
+ * --- Drag-to-scroll para los chips de tipo ---
+ * - Permite desplazar horizontalmente la barra de filtros de tipo Pokémon arrastrando con el mouse.
+ * - Mejora la experiencia en dispositivos donde hay muchos tipos y no caben todos en pantalla.
+ */
 if (pokemonTypeFilter) {
     let isDown = false;
     let startX;
@@ -36,7 +40,7 @@ if (pokemonTypeFilter) {
     });
 }
 
-// --- Filtro por tipo ---
+// Filtro por tipo de los Pokémon
 if (pokemonTypeFilter && pokemonGrid) {
     pokemonTypeFilter.addEventListener('click', (e) => {
         if (e.target.tagName === 'BUTTON' && e.target.classList.contains('type')) {
@@ -48,7 +52,7 @@ if (pokemonTypeFilter && pokemonGrid) {
     });
 }
 
-// --- Listeners del Modal ---
+// Listener de los Modal de Información de los Pokemón
 if (closeButton && pokemonDetailModal) {
     closeButton.addEventListener('click', () => {
         pokemonDetailModal.classList.add('hidden');
@@ -60,7 +64,7 @@ if (closeButton && pokemonDetailModal) {
     });
 }
 
-// --- Modal de Bienvenida ---
+// Modal para la Bienvenida de nuevos Usuarios
 window.addEventListener('DOMContentLoaded', () => {
     const welcomeModal = document.getElementById('welcome-modal');
     const closeWelcome = document.getElementById('close-welcome');
@@ -86,7 +90,14 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- Renderizado de Pokémon ---
+/**
+ * Renderiza la cuadrícula de cartas Pokémon en la vista de colección.
+ * - Filtra los Pokémon por nombre (búsqueda) y por tipo si hay uno seleccionado.
+ * - Muestra las cartas desbloqueadas con su imagen, nombre y color de fondo según el tipo principal.
+ * - Las cartas bloqueadas muestran "???" y no permiten ver detalles.
+ * - Al hacer clic en una carta desbloqueada, muestra el modal de detalles.
+ * - Actualiza la barra y el texto de progreso de la colección.
+ */
 function renderPokemonGrid() {
     if (!pokemonGrid) return;
     pokemonGrid.innerHTML = '';
@@ -141,6 +152,12 @@ function renderPokemonGrid() {
 
 // --- Carga inicial de la colección ---
 
+/**
+ * Descarga la lista de nombres e IDs de los 150 Pokémon de la primera generación desde la PokeAPI.
+ * - Guarda los datos mínimos (id y nombre) en el arreglo global allPokemonData.
+ * - Llama a renderPokemonGrid() para mostrar la cuadrícula inicial de la colección.
+ * - Maneja errores de red o de la API mostrando un mensaje en consola.
+ */
 async function fetchAllPokemonNamesAndIds() {
     try {
         const response = await fetch(`${POKEAPI_BASE_URL}?limit=${POKEMON_COUNT}`);
@@ -157,8 +174,10 @@ async function fetchAllPokemonNamesAndIds() {
     }
 }
 
-
+/**
+ * - Si existe el contenedor de la cuadrícula de Pokémon, inicia la carga de la lista base de Pokémon.
+ * - Esto asegura que la colección se renderice solo en la vista correspondiente.
+ */
 if (pokemonGrid) {
-    fetchAllPokemonNamesAndIds();
-    
+    fetchAllPokemonNamesAndIds(); 
 } 
