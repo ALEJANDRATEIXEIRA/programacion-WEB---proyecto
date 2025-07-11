@@ -177,13 +177,10 @@ function mostrarCartasSeleccionadasPartner(cards) {
 
 let intercambioConfirmado = false;
 let partnerConfirmado = false;
-let mySelectedIds = [];
-let partnerSelectedIds = [];
+
 
 document.getElementById('realizar-intercambio-btn').addEventListener('click', () => {
-    mySelectedIds = selectedCards.map(c => c.id);
     channel.publish('confirmar-intercambio', {
-        selected: mySelectedIds,
         clientId: ably.connection.id
     });
     intercambioConfirmado = true;
@@ -197,10 +194,7 @@ document.getElementById('realizar-intercambio-btn').addEventListener('click', ()
 
 channel.subscribe('confirmar-intercambio', async (mensaje) => {
     if (mensaje.data.clientId === ably.connection.id) return;
-
-    partnerSelectedIds = mensaje.data.selected;
     partnerConfirmado = true;
-
     if (intercambioConfirmado) {
         await realizarIntercambio();
     }
@@ -234,7 +228,9 @@ async function realizarIntercambio() {
 
 
 
-
+document.addEventListener('DOMContentLoaded', () => {
+    enviarSeleccion(); // <-- Esto asegura que el otro usuario reciba tu selección al entrar
+});
 
 
 //Cierra los canales cuando se sale de la vista
