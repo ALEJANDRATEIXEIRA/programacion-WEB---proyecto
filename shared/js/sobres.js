@@ -22,9 +22,11 @@ async function openNewPack() {
         const randomId = Math.floor(Math.random() * POKEMON_COUNT) + 1;
         chosenPokemonIds.add(randomId);
     }
+
     const idsToFetch = Array.from(chosenPokemonIds);
     const fetchPromises = idsToFetch.map(id => getPokemonData(id));
     const fetchedPokemonData = await Promise.all(fetchPromises);
+    
     for (const pokemonData of fetchedPokemonData) {
         if (pokemonData) {
             const exists = obtainedCards.some(card => card.id === pokemonData.id);

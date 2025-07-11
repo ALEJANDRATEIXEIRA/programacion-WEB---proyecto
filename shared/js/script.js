@@ -30,9 +30,11 @@ let searchTerm = '';
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
 function saveCardsToLocalStorage() {
     localStorage.setItem('pokemonCollection', JSON.stringify(obtainedCards));
 }
+
 function actualizarProgresoColeccion() {
     const progreso = obtainedCards.length;
     const total = POKEMON_COUNT;
@@ -67,7 +69,6 @@ async function getPokemonData(id) {
     pokemonCache.push(minimalData);
     return minimalData;
 }
-
 
 
 // Modal de detalle de Pokémon Esta es una función global
@@ -113,6 +114,7 @@ const TYPE_COLORS = {
     ghost: '#705898',
     steel: '#B8B8D0',
 };
+
 function createPokemonCardElement(pokemon, isOpenedPack = false) {
     const cardDiv = document.createElement('div'); // Crea un nuevo div
     cardDiv.classList.add('pokemon-card', 'unlocked'); // Le añade clases CSS
@@ -132,4 +134,3 @@ function createPokemonCardElement(pokemon, isOpenedPack = false) {
 
     return cardDiv; // Devuelve el elemento div de la carta
 }
-
